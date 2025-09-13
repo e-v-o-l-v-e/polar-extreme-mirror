@@ -21,14 +21,7 @@ func _input(_event: InputEvent) -> void:
 	celle_array.clear()
 	previous_mouse_pos = tile_under_mouse_pos
 	
-	#verif pour savoir si on peut placer ou pas 
-	for i in range(int(-effect_size/2), int(effect_size/2) + 1):
-		for j in range(int(-effect_size/2), int(effect_size/2) + 1):
-			var pos: Vector2i = tile_under_mouse_pos + Vector2i(i, j)
-			var cell_world_pos: Vector2 = map_to_local(pos)
-			if _cell_collides(cell_world_pos):
-				can_be_placed = false
-				break 
+
 	
 	
 	#verif pour la grille
@@ -40,6 +33,7 @@ func _input(_event: InputEvent) -> void:
 				var cell_world_pos: Vector2 = map_to_local(pos)
 				if _cell_collides(cell_world_pos):
 					set_cell(pos, 0, Vector2i(1, 0))
+					can_be_placed = false
 				else:
 					set_cell(pos, 0, Vector2i(2, 0)) 
 	
