@@ -14,3 +14,7 @@ func createLabo(pos: Vector2):
 func createToilets(pos: Vector2):
 	var toilets = Toilets.new()
 	toilets.constructs(pos)
+
+func createIceMine(pos: Vector2):
+	var ice_mine = IceMine.new()
+	ice_mine.constructs(pos)
