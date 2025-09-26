@@ -1,13 +1,17 @@
 class_name Building
-extends StaticBody2D
+extends Resource
 
 enum BUILDING_TYPE { SCIENCE, UTILITY }
 
-var id: int
-
+# infos
+@export var id: int
 @export var building_name: String
 @export var building_description: String
 
+# visual
+@export var sprite: Texture2D
+
+# location
 @export var size: Vector2 		# from the the upper left tile of the building, starting at 0,0
 @export var building_position: Vector2
 @export var entrance: Vector2 	# same

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuildingScience" load_steps=2 format=3 uid="uid://d06feuu3ijfnp"]
+
+[ext_resource type="Script" uid="uid://c263qetta52vc" path="res://scripts/buildings/BuildingScience.gd" id="1_t6kse"]
+
+[resource]
+script = ExtResource("1_t6kse")
+science_per_second = 2.0
+max_science_per_second = 200
+nb_scientists_min = 5
+building_name = "Laboratoire"
+building_description = "Un laboratoire permet de travailler sur différents (climatologie, glaciologie, etc)"
+metadata/_custom_type_script = "uid://b2au1ftq4ob63"

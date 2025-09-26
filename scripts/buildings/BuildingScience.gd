@@ -1,7 +1,7 @@
 class_name BuildingScience
 extends Building
 
-var building_type = BUILDING_TYPE.SCIENCE
+@export var building_type = BUILDING_TYPE.SCIENCE
 
 @export var producing: bool 	# whether the building is producing science atm
 
@@ -11,16 +11,13 @@ var building_type = BUILDING_TYPE.SCIENCE
 @export var max_science_per_second: int
 
 # minimum number of scientists to start producing science
-@export var min_scientists: int: 	
+@export var nb_scientists: int:
 	set(value):
-		min_scientists = value if (min_scientists + value > 0) else 0
-@export var current_cap: int:		# upgradable number of scientists in the building
+		nb_scientists = clamp(value, 0, nb_scientists_min)
+
+@export var nb_scientists_min: int: 	
 	set(value):
-		current_cap = current_cap + value if (current_cap + value < max_scientists) else max_scientists
-@export var max_scientists: int		# admin fixed number of scientists in the building
+		nb_scientists_min = value if (nb_scientists_min + value > 1) else 1
 
-func change_sci_min(n: int):
-	min_scientists = n
-
-func upgrade_scientists_cap(upgrade: int):
-	current_cap += upgrade
+func change_min_scientists(n: int):
+	nb_scientists_min += n

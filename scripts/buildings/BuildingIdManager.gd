@@ -1,5 +1,4 @@
 class_name BuildingIdManager
-extends Node
 
 static var _next_id := 1
 static var _buildings := {}

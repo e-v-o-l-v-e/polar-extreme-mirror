@@ -1,5 +1,4 @@
 class_name BuildingFactory
-extends Node
 
 signal building_mode
 signal building_select
