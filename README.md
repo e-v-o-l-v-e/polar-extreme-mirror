@@ -92,9 +92,26 @@ Godot 4 (GDScript)
 
 ### En jeu
 
-#### UI
+#### Interface utilisateur
+![UI](assets/ui_readme.png)
 
+- En haut à gauche : 
+  - Compteur de Science + accès au déblocage de nouveaux bâtiments (≃ arbre de compétence)
+- A gauche :
+  - Accès à la liste des projets
+  - Accès à la gestion des scientifiques
+- En bas au milieu:
+  - Menu de construction des bâtiments débloqués & chemins
+- En bas à droite : 
+  - Menu paramètres (aussi accessible avec Echap)
+- En haut à droite :
+  - Jauge d'indice écologique
+  - Jauge de bien-être global des scientifiques
+- En haut au milieu :
+  - Date en jeu (mois en cours)
+  - Conditions météréologiques
 
+#### Construction d'un bâtiment
 
 
 
