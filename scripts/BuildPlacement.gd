@@ -48,7 +48,6 @@ func _input(event: InputEvent) -> void:
 		return;
 
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
-	print(get_viewport().get_mouse_position())
 	var mouse_pos_grid: Vector2 = to_local(mouse_pos_glob)
 	var tile_under_mouse_pos: Vector2i = local_to_map(mouse_pos_grid)
 	var world_grid_pos: Vector2 = map_to_local(tile_under_mouse_pos)
@@ -103,8 +102,9 @@ func _place_building(_anim_name: StringName) -> void:
 	var instance = building_data
 	instance.rotation = preview.rotation
 	instance.position = placement_position
+	instance.name =instance.name+"_"+str(building_data.get_id())
 	%wolrd_grid.add_child(instance)
-	print(building_data.building_name)
+	print(instance.name)
 	stop_building();
 
 func _cell_collides(cell_world_pos: Vector2) -> bool:
