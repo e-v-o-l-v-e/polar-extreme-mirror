@@ -10,11 +10,14 @@ var celle_array: Array[Vector2i] = []
 var can_be_placed: bool = true
 @onready var preview: Sprite2D = $preview
 var placement_position : Vector2;
+var last_mousePosition : Vector2;
 var inPlacement : bool = false;
+var blockmouse : bool = false;
 
 
 
 func start_building(building : Building)->void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	inPlacement = true
 	building_data = building
 	var sprite_node = building.get_node_or_null("Sprite2D")
@@ -32,6 +35,7 @@ func stop_building()->void:
 	inPlacement = false;
 	building_data = null;
 	preview.texture = null;
+	blockmouse = false;
 	return
 
 
@@ -39,11 +43,16 @@ func stop_building()->void:
 
 func _input(event: InputEvent) -> void:
 	
+	if blockmouse:
+		Input.warp_mouse(last_mousePosition)
+		return;
 
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
+	print(get_viewport().get_mouse_position())
 	var mouse_pos_grid: Vector2 = to_local(mouse_pos_glob)
 	var tile_under_mouse_pos: Vector2i = local_to_map(mouse_pos_grid)
 	var world_grid_pos: Vector2 = map_to_local(tile_under_mouse_pos)
+	last_mousePosition = mouse_pos_glob
 	preview.position = world_grid_pos
 
 	for cell_pos in celle_array:
@@ -84,9 +93,9 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		placement_position = world_grid_pos
+		blockmouse = true
 		$AnimationInvalidPlacement.play("placementAnimationLib/invalidPlacement")
-
-
+		
 
 func _place_building(_anim_name: StringName) -> void:
 	if not can_be_placed:
