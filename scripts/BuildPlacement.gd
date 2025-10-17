@@ -1,36 +1,44 @@
 extends TileMapLayer
+class_name BuildPlacement
 
-@export var effect_size: int = 3
 
-@export var building_data: Building = preload("res://ressources/buildings/Toilets.tres")
+@export var effect_size: Vector2 = Vector2(3,3)
 
-@export var building_scene: PackedScene = preload("res://scenes/base_building.tscn")
+var building_data : Building
 
 var celle_array: Array[Vector2i] = []
 var can_be_placed: bool = true
-var preview: Sprite2D
+@onready var preview: Sprite2D = $preview
+var placement_position : Vector2;
+var inPlacement : bool = false;
 
 
-func _ready() -> void:
-	preview = $preview
-	if building_data and building_data.sprite:
-		preview.texture = building_data.sprite
-		preview.modulate = Color(1, 1, 1, 0.5)
-	else:
-		push_warning("Pas de sprite dans la Resource Building.")
+
+func start_building(building : Building)->void:
+	inPlacement = true
+	building_data = building
+	var sprite_node = building.get_node_or_null("Sprite2D")
+	if sprite_node:
+		preview.texture = sprite_node.texture
+	
+	var BuildingZone :CollisionShape2D= building.get_node_or_null("BuildingZone")	
+	if BuildingZone:
+			effect_size = BuildingZone.shape.get_rect().size/32
+	
+	return
 
 
+func stop_building()->void:
+	inPlacement = false;
+	building_data = null;
+	preview.texture = null;
+	return
 
 
 
 
 func _input(event: InputEvent) -> void:
-
-
-	if Input.is_key_pressed(KEY_R):
-		preview.rotate(PI/2);
-	if not (event is InputEventMouseMotion or event is InputEventMouseButton):
-		return
+	
 
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
 	var mouse_pos_grid: Vector2 = to_local(mouse_pos_glob)
@@ -41,13 +49,27 @@ func _input(event: InputEvent) -> void:
 	for cell_pos in celle_array:
 		set_cell(cell_pos, 0, Vector2i(0, 0))
 	celle_array.clear()
+	
+	
+	if Input.is_key_pressed(KEY_H):
+		start_building(load("res://scenes/buildings/builddings/IceMine.tscn").instantiate())	
+	
+	if Input.is_key_pressed(KEY_J):
+		start_building(load("res://scenes/buildings/builddings/Toilet.tscn").instantiate())
+		
+	
+	
+	if(!inPlacement):
+		return
+	
+	if Input.is_key_pressed(KEY_R):
+		preview.rotate(PI/2);
+	if not (event is InputEventMouseMotion or event is InputEventMouseButton):
+		return
 
 	can_be_placed = true
 
-	var size = Vector2i(
-		int(building_data.size.x) if building_data.size.x > 0 else effect_size,
-		int(building_data.size.y) if building_data.size.y > 0 else effect_size
-	)
+	var size = effect_size
 
 	for i in range(-size.x / 2, size.x / 2 + 1):
 		for j in range(-size.y / 2, size.y / 2 + 1):
@@ -61,21 +83,19 @@ func _input(event: InputEvent) -> void:
 				set_cell(pos, 0, Vector2i(2, 0))
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		_place_building(world_grid_pos)
+		placement_position = world_grid_pos
+		_place_building(building_data)
 
 
-func _place_building(world_grid_pos: Vector2) -> void:
+func _place_building(building_to_place : Building) -> void:
 	if not can_be_placed:
 		return
-
-	var instance = building_scene.instantiate() as BaseBuilding
+	var instance = building_to_place
 	instance.rotation = preview.rotation
-	instance.position = world_grid_pos
-	instance.data = building_data.duplicate()
-	get_parent().add_child(instance)
-	instance.apply_data()
-	print(building_data.building_name)
-
+	instance.position = placement_position
+	%wolrd_grid.add_child(instance)
+	print(building_to_place.building_name)
+	stop_building();
 
 func _cell_collides(cell_world_pos: Vector2) -> bool:
 	var space_state = get_world_2d().direct_space_state
