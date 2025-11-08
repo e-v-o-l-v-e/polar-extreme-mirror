@@ -63,8 +63,6 @@ func set_goal():
 			go_to_building(Enums.BUILDING_TYPE.CANTEEN)
 		Enums.MOMENT.AFTERNOON_SHIFT:
 			go_to_building(Enums.BUILDING_TYPE.LABO)
-		Enums.MOMENT.SHIFT_END:
-			pass
 		Enums.MOMENT.EVENING_SHOWER:
 			if showers_schedule[Enums.MOMENT.EVENING_SHOWER] :
 				go_to_building(Enums.BUILDING_TYPE.SHOWER)
