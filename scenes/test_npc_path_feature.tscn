@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2wsdey33fa0"]
+[gd_scene load_steps=5 format=3 uid="uid://bd2wsdey33fa0"]
 
 [ext_resource type="Script" uid="uid://orip7bvg8ifp" path="res://scripts/level.gd" id="1_lenl4"]
 [ext_resource type="PackedScene" uid="uid://c6eb3xgrqgvie" path="res://scenes/path.tscn" id="2_ihrrv"]
 [ext_resource type="PackedScene" uid="uid://dk3tmvweer7i" path="res://scenes/agent.tscn" id="3_hbqfr"]
-[ext_resource type="PackedScene" uid="uid://c86w7kpchxg06" path="res://scenes/buildingProto.tscn" id="4_hrrgj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_w8frs"]
 
@@ -41,18 +40,3 @@ position = Vector2(832, 384)
 scale = Vector2(3, 3)
 
 [node name="Buildings" type="Node2D" parent="."]
-
-[node name="Toilet" parent="Buildings" instance=ExtResource("4_hrrgj")]
-position = Vector2(704, 256)
-
-[node name="Dormitory" parent="Buildings" instance=ExtResource("4_hrrgj")]
-position = Vector2(832, 384)
-
-[node name="Canteen" parent="Buildings" instance=ExtResource("4_hrrgj")]
-position = Vector2(576, 512)
-
-[node name="Labo" parent="Buildings" instance=ExtResource("4_hrrgj")]
-position = Vector2(576, 128)
-
-[node name="Showers" parent="Buildings" instance=ExtResource("4_hrrgj")]
-position = Vector2(320, 256)

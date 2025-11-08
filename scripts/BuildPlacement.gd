@@ -14,8 +14,6 @@ var last_mousePosition : Vector2;
 var inPlacement : bool = false;
 var blockmouse : bool = false;
 
-
-
 func start_building(building : Building)->void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	inPlacement = true
@@ -30,16 +28,12 @@ func start_building(building : Building)->void:
 	
 	return
 
-
 func stop_building()->void:
 	inPlacement = false;
 	building_data = null;
 	preview.texture = null;
 	blockmouse = false;
 	return
-
-
-
 
 func _input(event: InputEvent) -> void:
 	
@@ -58,15 +52,12 @@ func _input(event: InputEvent) -> void:
 		set_cell(cell_pos, 0, Vector2i(0, 0))
 	celle_array.clear()
 	
-	
 	if Input.is_key_pressed(KEY_H):
 		start_building(load("res://scenes/buildings/builddings/IceMine.tscn").instantiate())	
 	
 	if Input.is_key_pressed(KEY_J):
 		start_building(load("res://scenes/buildings/builddings/Toilet.tscn").instantiate())
 		
-	
-	
 	if(!inPlacement):
 		return
 	
