@@ -9,12 +9,16 @@ class_name BuildPlacement
 var in_placement: bool = false
 var can_be_placed: bool = true
 var building_data: Building
+var animation_playing: bool = false  
 
 var placement_position: Vector2
 var cell_array: Array[Vector2i] = []
 
 
 func _input(event: InputEvent) -> void:
+	if animation_playing:
+		return
+	
 	_update_mouse_positions()
 	_handle_hotkeys()
 	if in_placement:
@@ -22,9 +26,10 @@ func _input(event: InputEvent) -> void:
 		_handle_placement_preview(event)
 		_handle_building_click(event)
 
-
-
 func start_building(building: Building) -> void:
+	if animation_playing:
+		return
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	in_placement = true
 	building_data = building
@@ -42,15 +47,14 @@ func stop_building() -> void:
 	building_data = null
 	preview.texture = null
 
-
-
 func _handle_hotkeys() -> void:
+	if animation_playing:
+		return
+	
 	if Input.is_key_pressed(KEY_H):
 		start_building(load("res://scenes/buildings/instanciables/IceMine.tscn").instantiate())
 	elif Input.is_key_pressed(KEY_J):
 		start_building(load("res://scenes/buildings/instanciables/Toilet.tscn").instantiate())
-
-
 
 func _update_mouse_positions() -> void:
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
@@ -83,8 +87,9 @@ func _handle_placement_preview(event: InputEvent) -> void:
 				set_cell(pos, 0, Vector2i(2, 0))
 
 func _handle_building_click(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and can_be_placed:
 		placement_position = preview.position
+		animation_playing = true  
 		animation.play("placementAnimationLib/goodPlacement")
 
 func _clear_previous_preview() -> void:
@@ -92,12 +97,9 @@ func _clear_previous_preview() -> void:
 		set_cell(cell_pos, 0, Vector2i(0, 0))
 	cell_array.clear()
 
-
-
 func _place_building(_anim_name: StringName) -> void:
-	if not can_be_placed:
-		return
-
+	animation_playing = false 
+	_clear_previous_preview()
 	var instance: Building = building_data
 	instance.rotation = preview.rotation
 	instance.position = placement_position
@@ -107,9 +109,7 @@ func _place_building(_anim_name: StringName) -> void:
 	%WorldGrid.add_child(instance)
 	BuildingsInfo.add_building(instance)
 	stop_building()
-
-
-
+	
 func _cell_collides(cell_world_pos: Vector2) -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var cell_size = tile_set.tile_size
@@ -126,3 +126,4 @@ func _cell_collides(cell_world_pos: Vector2) -> bool:
 
 	var result = space_state.intersect_shape(query, 1)
 	return result.size() > 0
+		
