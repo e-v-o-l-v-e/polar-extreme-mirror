@@ -1,106 +1,114 @@
 extends TileMapLayer
 class_name BuildPlacement
 
-@onready var anim_invalid_placement : AnimationPlayer = $AnimationInvalidPlacement
-@onready var preview : Sprite2D = $PreviewSprite
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var preview: Sprite2D = $PreviewSprite
 
-@export var effect_size: Vector2 = Vector2(3,3)
+@export var effect_size: Vector2 = Vector2(3, 3)
 
-var building_data : Building
-
-var cell_array: Array[Vector2i] = []
+var in_placement: bool = false
 var can_be_placed: bool = true
-var placement_position : Vector2;
-var last_mousePosition : Vector2;
-var inPlacement : bool = false;
-var blockmouse : bool = false;
+var building_data: Building
 
-func start_building(building : Building)->void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	inPlacement = true
-	building_data = building
-	var sprite_node = building.get_node_or_null("Sprite2D")
-	if sprite_node:
-		preview.texture = sprite_node.texture
-	
-	var BuildingZone :CollisionShape2D= building.get_node_or_null("BuildingZone")
-	if BuildingZone:
-		effect_size = BuildingZone.shape.get_rect().size/32
-	
-	return
+var placement_position: Vector2
+var cell_array: Array[Vector2i] = []
 
-func stop_building()->void:
-	inPlacement = false;
-	building_data = null;
-	preview.texture = null;
-	blockmouse = false;
-	return
 
 func _input(event: InputEvent) -> void:
-	
-	if blockmouse:
-		Input.warp_mouse(last_mousePosition)
-		return;
+	_update_mouse_positions()
+	_handle_hotkeys()
+	if in_placement:
+		_handle_rotation_input()
+		_handle_placement_preview(event)
+		_handle_building_click(event)
 
-	var mouse_pos_glob: Vector2 = get_global_mouse_position()
-	var mouse_pos_grid: Vector2 = to_local(mouse_pos_glob)
-	var tile_under_mouse_pos: Vector2i = local_to_map(mouse_pos_grid)
-	var world_grid_pos: Vector2 = map_to_local(tile_under_mouse_pos)
-	last_mousePosition = mouse_pos_glob
-	preview.position = world_grid_pos
 
-	for cell_pos in cell_array:
-		set_cell(cell_pos, 0, Vector2i(0, 0))
-	cell_array.clear()
-	
+
+func start_building(building: Building) -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	in_placement = true
+	building_data = building
+
+	var sprite_node: Sprite2D = building.get_node_or_null("Sprite2D")
+	if sprite_node:
+		preview.texture = sprite_node.texture
+
+	var building_zone: CollisionShape2D = building.get_node_or_null("BuildingZone")
+	if building_zone:
+		effect_size = building_zone.shape.get_rect().size / 32
+
+func stop_building() -> void:
+	in_placement = false
+	building_data = null
+	preview.texture = null
+
+
+
+func _handle_hotkeys() -> void:
 	if Input.is_key_pressed(KEY_H):
 		start_building(load("res://scenes/buildings/instanciables/IceMine.tscn").instantiate())
-	
-	if Input.is_key_pressed(KEY_J):
+	elif Input.is_key_pressed(KEY_J):
 		start_building(load("res://scenes/buildings/instanciables/Toilet.tscn").instantiate())
-		
-	if(!inPlacement):
-		return
-	
-	if Input.is_key_pressed(KEY_R):
-		preview.rotate(PI/2);
-	if not (event is InputEventMouseMotion or event is InputEventMouseButton):
-		return
 
+
+
+func _update_mouse_positions() -> void:
+	var mouse_pos_glob: Vector2 = get_global_mouse_position()
+	var mouse_pos_grid: Vector2 = to_local(mouse_pos_glob)
+	var tile_under_mouse: Vector2i = local_to_map(mouse_pos_grid)
+	var world_grid_pos: Vector2 = map_to_local(tile_under_mouse)
+
+	preview.position = world_grid_pos
+
+func _handle_rotation_input() -> void:
+	if Input.is_key_pressed(KEY_R):
+		preview.rotate(PI / 2)
+
+func _handle_placement_preview(event: InputEvent) -> void:
+	_clear_previous_preview()
 	can_be_placed = true
 
+	var tile_under_mouse: Vector2i = local_to_map(to_local(get_global_mouse_position()))
 	var size = effect_size
 
 	for i in range(-size.x / 2, size.x / 2 + 1):
 		for j in range(-size.y / 2, size.y / 2 + 1):
-			var pos: Vector2i = tile_under_mouse_pos + Vector2i(i, j)
+			var pos: Vector2i = tile_under_mouse + Vector2i(i, j)
 			cell_array.append(pos)
 			var cell_world_pos: Vector2 = map_to_local(pos)
 			if _cell_collides(cell_world_pos):
-				set_cell(pos, 0, Vector2i(1, 0)) 
+				set_cell(pos, 0, Vector2i(1, 0))
 				can_be_placed = false
 			else:
 				set_cell(pos, 0, Vector2i(2, 0))
 
+func _handle_building_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		placement_position = world_grid_pos
-		blockmouse = true
-		anim_invalid_placement.play("placementAnimationLib/invalidPlacement")
-		
+		placement_position = preview.position
+		animation.play("placementAnimationLib/goodPlacement")
 
-func _place_building(world_grid : TileMapLayer, _anim_name: StringName) -> void:
+func _clear_previous_preview() -> void:
+	for cell_pos in cell_array:
+		set_cell(cell_pos, 0, Vector2i(0, 0))
+	cell_array.clear()
+
+
+
+func _place_building(_anim_name: StringName) -> void:
 	if not can_be_placed:
 		return
-		
-	var instance : Building = building_data
+
+	var instance: Building = building_data
 	instance.rotation = preview.rotation
 	instance.position = placement_position
-	instance.name =instance.name+"_"+str(building_data.get_id())
-	print(instance.name)
+	instance.name = instance.name + "_" + str(building_data.get_id())
 	
-	world_grid.add_child(instance)
+	print(instance.name)
+	%WorldGrid.add_child(instance)
 	BuildingsInfo.add_building(instance)
-	stop_building();
+	stop_building()
+
+
 
 func _cell_collides(cell_world_pos: Vector2) -> bool:
 	var space_state = get_world_2d().direct_space_state
