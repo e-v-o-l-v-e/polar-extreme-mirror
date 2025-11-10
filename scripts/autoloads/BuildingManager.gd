@@ -19,7 +19,8 @@ static var buildings_scenes = {
 	"IceMine" : preload("res://scenes/buildings/instanciables/IceMine.tscn"),
 	"Shower" : preload("res://scenes/buildings/instanciables/ShowerBlock.tscn"),
 	"Toilet" : preload("res://scenes/buildings/instanciables/Toilet.tscn"),
-	"Cantine" : preload("res://scenes/buildings/instanciables/Canteen.tscn")
+	"Cantine" : preload("res://scenes/buildings/instanciables/Canteen.tscn"),
+	"Dormiatory" : preload("res://scenes/buildings/instanciables/Dormitory.tscn")
 }
 
 static func instantiate_building(building : String) -> Building :

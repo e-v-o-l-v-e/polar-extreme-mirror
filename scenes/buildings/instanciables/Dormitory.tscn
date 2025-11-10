@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://j7n4yatha6vt"]
+
+[ext_resource type="PackedScene" uid="uid://bvccgvdeejgkb" path="res://scenes/buildings/abstracts/Building.tscn" id="1_81ail"]
+[ext_resource type="Texture2D" uid="uid://c23prw78ixa2i" path="res://assets/building/dormitory.png" id="2_03w22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03w22"]
+size = Vector2(310, 150)
+
+[node name="Building" instance=ExtResource("1_81ail")]
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_03w22")
+
+[node name="BuildingZone" parent="." index="3"]
+shape = SubResource("RectangleShape2D_03w22")
