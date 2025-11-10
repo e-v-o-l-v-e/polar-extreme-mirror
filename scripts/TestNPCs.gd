@@ -13,8 +13,8 @@ func _ready() -> void:
 	labo.set_building_type(Enums.BUILDING_TYPE.LABO)
 	showers.set_building_type(Enums.BUILDING_TYPE.SHOWER)
 	
-	BuildingsInfo.add_building(toilet)
-	BuildingsInfo.add_building(dormitory)
-	BuildingsInfo.add_building(canteen)
-	BuildingsInfo.add_building(labo)
-	BuildingsInfo.add_building(showers)
+	GlobalBuildingManager.add_building(toilet)
+	GlobalBuildingManager.add_building(dormitory)
+	GlobalBuildingManager.add_building(canteen)
+	GlobalBuildingManager.add_building(labo)
+	GlobalBuildingManager.add_building(showers)
