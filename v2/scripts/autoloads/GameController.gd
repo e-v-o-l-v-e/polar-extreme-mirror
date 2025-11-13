@@ -14,9 +14,8 @@ func set_grid(grid : TileMapLayer):
 	UIController.build_path.connect(_on_build_path)
 	
 func _on_build_batiment():
-	var building = building_manager.create_building(Enums.BUILDING_NAME.ICE_MINE)
-	var position = Vector2(50,50)
-	world_manager.place_building(building)
+	var building := building_manager.create_building(Enums.BUILDING_NAME.ICE_MINE)
+	UIController.emit_start_building(building)
 	building_manager.register(building)
 	
 func _on_build_path():

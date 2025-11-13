@@ -8,6 +8,8 @@ class_name BuildPlacement
 
 const IGNORED_LAYERS_FOR_BUILDING = [2]
 
+
+
 var in_placement: bool = false
 var in_path_placement : bool = false
 var has_to_place_path :bool = false
@@ -20,6 +22,12 @@ var n_path = 0
 var placement_position: Vector2
 var cell_array: Array[Vector2i] = []
 
+
+
+func _ready() -> void:
+	UIController.start_building.connect(_on_building_signal)
+	print("TEst")
+	
 
 func _input(event: InputEvent) -> void:
 	if animation_playing:
@@ -34,6 +42,12 @@ func _input(event: InputEvent) -> void:
 	elif in_path_placement:
 		_handle_placement_preview(event)
 		_handle_building_click(event)
+
+
+func _on_building_signal(building:Building)->void:
+	start_building(building)
+
+
 
 func start_building(building: Building) -> void:
 	if animation_playing:
