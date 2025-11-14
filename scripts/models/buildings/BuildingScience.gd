@@ -1,7 +1,8 @@
 extends Building
 class_name BuildingScience
 
-@export var producing: bool 	# whether the building is producing science atm
+# whether the building is producing science atm
+@export var producing: bool
 
 @export var science_per_second: float:		# per scientist
 	set(value):
@@ -39,4 +40,7 @@ func get_building_type() -> Enums.BUILDING_TYPE:
 	
 func change_science_per_second(value: float) -> void:
 	science_per_second = value
-	Gauges.change_science_per_second(value)
+	GameController.get_gauges().change_science_per_second(value)
+
+func production_pause() -> void:
+	producing = false

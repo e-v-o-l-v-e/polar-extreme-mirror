@@ -4,6 +4,7 @@ extends Node2D
 @onready var scientist_manager : ScientistManager = load("res://scripts/systems/ScientistManager.gd").new()
 @onready var time_manager : TimeManager = load("res://scripts/systems/TimeManager.gd").new()
 @onready var building_manager : BuildingManager = load("res://scripts/systems/BuildingManager.gd").new()
+@onready var gauges : Gauges = load("res://scripts/models/game/Gauges.gd").new()
 
 func _ready():
 	pass
@@ -29,7 +30,9 @@ func _on_validate_building_placement(building:Building):
 func _on_delete_building(building:Building):
 	building_manager.unregister(building)
 
-
 func _on_enroll_scientist():
 	var scientist_to_place : Scientist = scientist_manager.enroll_scientist()
 	world_manager.place_scientist(scientist_to_place)
+	
+func get_gauges() -> Gauges:
+	return gauges

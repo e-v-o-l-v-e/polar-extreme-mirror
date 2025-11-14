@@ -1,20 +1,20 @@
 class_name Gauges
 extends Node
 
-static var science := 0.0
-static var science_per_seconds := 0.0
+var science := 0.0
+var science_per_seconds := 0.0
 
-static var pollution := 1000.0
-static var pollution_per_seconds := 0.0
+var pollution := 1000.0
+var pollution_per_seconds := 0.0
 
-static var update_time := 2.0
+var update_time := 2.0
 
 
 ## Science
-static func get_science() -> float:
+func get_science() -> float:
 	return science
 
-static func change_science(value: float) -> bool:
+func change_science(value: float) -> bool:
 	if science + value > 0:
 		science += value
 		print("Gauges, science : enough credit, deduce and validate request")
@@ -23,28 +23,28 @@ static func change_science(value: float) -> bool:
 		print("Gauges, science : NOT enough credit, do no deduce and deny request")
 		return false
 
-static func get_science_per_second() -> float:
+func get_science_per_second() -> float:
 	return science
 
-static func change_science_per_second(value: float) -> void:
+func change_science_per_second(value: float) -> void:
 		science_per_seconds += value
 
 
 # pollution
-static func get_pollution() -> float:
+func get_pollution() -> float:
 	return pollution
 	
-static func get_pollution_per_second() -> float:
+func get_pollution_per_second() -> float:
 	return pollution_per_seconds
 
-static func change_pollution(value: float) -> bool:
+func change_pollution(value: float) -> bool:
 	pollution += value
 	if pollution <= 0:
 		# todo : reward
 		print("Gauges, pollution : pollution < 0 TODO") 
 	return true
 
-static func change_pollution_per_second(value: float) -> void:
+func change_pollution_per_second(value: float) -> void:
 	pollution_per_seconds += value
 
 

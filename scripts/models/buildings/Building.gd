@@ -9,8 +9,6 @@ class_name Building
 @export var building_type: Enums.BUILDING_TYPE
 @export var pollution_per_second: float
 
-
-
 func get_id():
 	return id
 
@@ -25,7 +23,7 @@ func get_pollution() -> float:
 	
 func change_pollution(value: float) -> void:
 	pollution_per_second += value
-	Gauges.change_pollution_per_second(value)
+	GameController.get_gauges().change_pollution_per_second(value)
 	
 func delete():
 	queue_free()
