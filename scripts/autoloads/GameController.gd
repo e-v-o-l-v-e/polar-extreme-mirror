@@ -61,7 +61,9 @@ func zoom_camera(building : Building):
 func _on_delete_building(building:Building):
 	building_manager.unregister(building)
 
-
 func _on_enroll_scientist():
 	var scientist_to_place : Scientist = scientist_manager.enroll_scientist()
 	world_manager.place_scientist(scientist_to_place)
+	
+func get_gauges() -> Gauges:
+	return gauges

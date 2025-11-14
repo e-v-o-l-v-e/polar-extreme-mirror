@@ -12,7 +12,7 @@ class_name Building
 
 signal building_clicked(building : Building)
 
-func get_id() -> int:
+func get_id():
 	return id
 	
 func set_id(new_id: int) -> void:
@@ -45,6 +45,3 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_hover = false
 	Gauges.change_pollution_per_second(value)
-	
-func delete():
-	queue_free()
