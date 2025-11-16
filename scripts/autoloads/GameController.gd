@@ -11,23 +11,20 @@ func _ready():
 func set_grid(grid : TileMapLayer):
 	world_manager.world_grid = grid
 	UiController.build_batiment.connect(_on_build_batiment)
+	UiController.enroll_scientist.connect(_on_enroll_scientist)
 	UiController.validate_building_placement.connect(_on_validate_building_placement)
-	
+
 func _on_build_batiment(bname:Enums.BUILDING_TYPE):
 	var building := building_manager.create_building(Enums.BUILDING_TYPE.ICEMINE)
 	UiController.emit_start_building(building)
-	
-func _on_build_path():
-	UiController.emit_start_building_path()	
-	
 
-	
+func _on_build_path():
+	UiController.emit_start_building_path()
+
 func _on_validate_building_placement(building:Building):
 	building_manager.register(building)
+	world_manager.place_building(building)
 
-	
-func _on_validate_path_placement(path:Path):
-	print("pass")
-
-	
-	
+func _on_enroll_scientist():
+	var scientist_to_place : Scientist = scientist_manager.enroll_scientist()
+	world_manager.place_scientist(scientist_to_place)
