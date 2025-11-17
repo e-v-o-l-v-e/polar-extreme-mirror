@@ -52,3 +52,6 @@ func encode_collisions(collisions: Dictionary) -> int:
 
 func get_preview() -> Texture2D :
 	return get_node_or_null("PreviewTexture").texture
+	
+func delete():
+	queue_free()

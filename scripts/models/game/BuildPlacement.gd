@@ -18,6 +18,7 @@ var building_data: Building
 var path_data : Path
 var animation_playing: bool = false  
 var n_path = 0
+var in_delete_object : bool = false;
 
 var placement_position: Vector2
 var cell_array: Array[Vector2i] = []
@@ -26,6 +27,7 @@ var cell_array: Array[Vector2i] = []
 func _ready() -> void:
 	UiController.start_building.connect(_on_building_signal)
 	UiController.start_placing_path.connect(_on_path_button_pressed)
+	UiController.start_delete_object.connect(delete_object)
 	
 
 func _input(event: InputEvent) -> void:
@@ -33,13 +35,19 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	_update_mouse_positions()
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if in_placement:
 		_handle_rotation_input()
 		_handle_placement_preview(event)
 		_handle_building_click(event)
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	elif in_path_placement:
 		_handle_placement_preview(event)
 		_handle_building_click(event)
+		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
+	elif in_delete_object:
+		_handle_delete_object(event)
+		Input.set_default_cursor_shape(Input.CURSOR_CROSS)
 
 
 func _on_building_signal(building:Building)->void:
@@ -182,3 +190,31 @@ func build_path():
 	preview.texture = path_data.get_preview()
 	preview.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	effect_size = Vector2(1.0, 1.0)
+
+
+func delete_object():
+	in_delete_object = !in_delete_object
+	
+	
+	
+func _handle_delete_object(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+
+	var mouse_pos = get_global_mouse_position()
+	var space_state = get_world_2d().direct_space_state
+
+	var query := PhysicsPointQueryParameters2D.new()
+	query.position = mouse_pos
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	query.collision_mask = 0xFFFFFFFF
+
+	var result = space_state.intersect_point(query, 8)
+
+	if result.size() > 0:
+		var clicked = result[0].collider
+		if clicked is Building:
+			UiController.emit_delete_building(clicked)
+		if clicked.has_method("delete"):
+			clicked.delete()

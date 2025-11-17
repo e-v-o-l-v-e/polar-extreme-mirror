@@ -41,6 +41,13 @@ offset_bottom = 95.0
 text = "Create a scientist"
 script = ExtResource("7_gg4pt")
 
+[node name="Button4" type="Button" parent="."]
+offset_top = 97.0
+offset_right = 139.0
+offset_bottom = 127.0
+text = "Delete"
+
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
 [connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
