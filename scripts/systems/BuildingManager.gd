@@ -57,6 +57,10 @@ func unregister(building:Building):
 	var type = building.get_building_type()
 	buildings_positions[type].erase(building)
 	
+func unregister(building:Building):
+	var type = building.get_building_type()
+	buildings_positions[type].erase(building)
+	
 func get_building(id :int) -> Building:
 	return buildingsIds[id]
 

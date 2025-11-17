@@ -49,6 +49,7 @@ func _input(event: InputEvent) -> void:
 	elif in_path_placement:
 		_handle_path_drag_input(event)
 		_handle_placement_preview(event)
+		_handle_building_click(event)
 		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
 	elif in_delete_object:
 		_handle_delete_object(event)

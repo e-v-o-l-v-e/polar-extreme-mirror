@@ -44,3 +44,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouse_hover = false
+	Gauges.change_pollution_per_second(value)
+	
+func delete():
+	queue_free()

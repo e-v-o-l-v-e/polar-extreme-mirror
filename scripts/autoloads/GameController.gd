@@ -58,3 +58,10 @@ func get_random_building_position() -> Vector2:
 
 func zoom_camera(building : Building):
 	UiController.emit_zoom_building(building.global_position)
+func _on_delete_building(building:Building):
+	building_manager.unregister(building)
+
+
+func _on_enroll_scientist():
+	var scientist_to_place : Scientist = scientist_manager.enroll_scientist()
+	world_manager.place_scientist(scientist_to_place)
