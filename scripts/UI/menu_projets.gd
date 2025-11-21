@@ -66,15 +66,15 @@ func _on_button_test_pressed() -> void:
 	if (nbProject-1)%5 == 0 and nbProject > 1 :
 		nbPageTot += 1
 
-	var project = projectScene.instantiate()
-	arrayProjects.append(project)
-	projet_container.add_child(project)
+	var proj = projectScene.instantiate()
+	arrayProjects.append(proj)
+	projet_container.add_child(proj)
 	
-	project.setName(str(nbProject))
-	project.setVisibility(false)
+	proj.setName(str(nbProject))
+	proj.setVisibility(false)
 	
 	if nbProjPerPage < 5 :
-		project.setVisibility(true)
+		proj.setVisibility(true)
 		nbProjPerPage += 1
 
 

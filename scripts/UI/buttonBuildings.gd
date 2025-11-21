@@ -14,7 +14,7 @@ class_name buttonBuildings
 var alreadyCliked := false
 
 # methodes
-func set_button_iconn():
+func set_button_iconn() -> void:
 	var atlas := AtlasTexture.new()
 	atlas.atlas = preload("res://assets/UI/tilesetT3.png")
 	atlas.region = Rect2(icon_pos * Vector2(64, 64), Vector2(64, 64))

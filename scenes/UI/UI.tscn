@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://on73whrfey7o"]
+[gd_scene load_steps=13 format=3 uid="uid://on73whrfey7o"]
 
 [ext_resource type="Script" uid="uid://cknf5uouy4rdw" path="res://scripts/UI/ui.gd" id="1_5en4g"]
 [ext_resource type="Texture2D" uid="uid://pthdnyca7pek" path="res://assets/UI/test.png" id="1_dj8aq"]
@@ -26,6 +26,8 @@ region_rect = Rect2(0, 448, 64, 64)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qd4ol"]
 texture = ExtResource("5_75u2n")
 region_rect = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgnrc"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -133,7 +135,6 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 
 [node name="hBoxBtns" type="HBoxContainer" parent="BaseContainer/buildingsMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -298,6 +299,7 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_yamhi")
 
 [node name="hBoxBtnCat3" type="HBoxContainer" parent="BaseContainer/buildingsMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -348,6 +350,7 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+icon = SubResource("AtlasTexture_wgnrc")
 
 [connection signal="pressed" from="BaseContainer/hBoxProjScien/projScienMenu/vBoxBtns/btnProjets" to="." method="_on_button_projets_pressed"]
 [connection signal="pressed" from="BaseContainer/hBoxProjScien/projScienMenu/vBoxBtns/btnScientists" to="." method="_on_button_scientists_pressed"]
