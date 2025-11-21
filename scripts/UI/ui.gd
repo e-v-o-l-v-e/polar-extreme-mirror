@@ -71,8 +71,8 @@ func _on_btn_back_pressed() -> void:
 	h_box_btns.visible = true
 
 
-func _on_btn_path_mouse_entered() -> void:
-	var test = Label
-	add_child(test)
-	test.text = "TEST"
-	test.visible = true
+#func _on_btn_path_mouse_entered() -> void:
+	#var test = Label.new()
+	#test.text = "TEST"
+	#test.visible = true
+	#add_child(test)
