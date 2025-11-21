@@ -1,15 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cf2q1o3ffr4jb"]
 
 [ext_resource type="PackedScene" uid="uid://b775j25eugfm1" path="res://scenes/buildings/BuildingScience.tscn" id="1_aj2hn"]
-[ext_resource type="Texture2D" uid="uid://bmfe7mtkwkkmo" path="res://assets/building/Laboratory.png" id="2_aj2hn"]
+[ext_resource type="Texture2D" uid="uid://cmtbc4ygo23lf" path="res://assets/building/ice_mine.png" id="2_aj2hn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aj2hn"]
-size = Vector2(159, 159)
+size = Vector2(95, 95)
 
 [node name="BuildingScience" instance=ExtResource("1_aj2hn")]
+texture_filter = 1
 
 [node name="Door" parent="." index="0"]
-position = Vector2(0, 72)
+position = Vector2(0, 40)
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(1, 1)
