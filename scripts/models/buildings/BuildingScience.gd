@@ -50,7 +50,7 @@ func science_change_per_second(value: float) -> void:
 
 func science_production_pause() -> void:
 	producing = false
-	Gauges.change_science_per_second(-1 * science_per_second)
+	GameController.change_science_per_second(-1 * science_per_second)
 
 func get_door_position():
 	var door : Marker2D = get_node_or_null("Door")

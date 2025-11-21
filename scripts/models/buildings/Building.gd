@@ -10,7 +10,6 @@ class_name Building
 @export var pollution_per_second: float
 
 func get_id() -> int:
-func get_id():
 	return id
 	
 func set_id(new_id: int) -> void:
@@ -20,7 +19,7 @@ func get_building_name() -> String:
 	return building_name
 	
 func get_building_type() -> Enums.BUILDING_TYPE:
-	return Enums.BUILDING_TYPE.NONE
+	return building_type
 
 func get_pollution() -> float:
 	return pollution_per_second
