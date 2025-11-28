@@ -9,7 +9,8 @@ class_name buttonBuildings
 @export var icon_pos : Vector2		# commence à (0,0)
 
 @onready var button: Button = $VBoxContainer/Button
-@onready var label: Label = $VBoxContainer/Control/Label
+@onready var label: Label = $VBoxContainer/Control/NinePatchRect/MarginContainer/Label
+@onready var nine_patch_rect: NinePatchRect = $VBoxContainer/Control/NinePatchRect
 
 var alreadyCliked := false
 
@@ -29,11 +30,11 @@ func _ready() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	label.visible = true
+	nine_patch_rect.visible = true
 
 
 func _on_button_mouse_exited() -> void:
-	label.visible = false
+	nine_patch_rect.visible = false
 
 
 func _on_button_pressed() -> void:

@@ -87,21 +87,27 @@ layout_mode = 2
 theme_override_constants/separation = -3
 
 [node name="AssignationScientifiques" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="AssignationScientifiques2" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="AssignationScientifiques3" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="AssignationScientifiques4" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="AssignationScientifiques5" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="AssignationScientifiques6" parent="ninePatchRect/VBoxContainer/ScrollContainer/batContainer" instance=ExtResource("4_cjlel")]
+visible = false
 layout_mode = 2
 
 [node name="Control2" type="Control" parent="ninePatchRect/VBoxContainer"]

@@ -87,20 +87,25 @@ layout_mode = 2
 theme_override_constants/separation = -3
 
 [node name="Projet" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Projet2" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 
 [node name="Projet3" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 
 [node name="Projet4" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 
 [node name="Projet5" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 
 [node name="Projet6" parent="ninePatchRect/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("2_n1p1n")]
