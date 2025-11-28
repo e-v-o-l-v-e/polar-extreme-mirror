@@ -3,7 +3,7 @@ extends Camera2D
 var min_zoom: float = 0.5
 var max_zoom: float = 3.0
 var zoom_speed: float = 0.1
-var drag_button: MouseButton = MOUSE_BUTTON_LEFT
+var drag_button: MouseButton = MOUSE_BUTTON_RIGHT
 var smooth_zoom: bool = true
 
 var dragging := false
