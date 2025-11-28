@@ -8,8 +8,6 @@ class_name BuildPlacement
 
 const IGNORED_LAYERS_FOR_BUILDING = [2]
 
-
-
 var in_placement: bool = false
 var in_path_placement : bool = false
 var has_to_place_path :bool = false
@@ -18,10 +16,14 @@ var building_data: Building
 var path_data : Path
 var animation_playing: bool = false  
 var n_path = 0
-var in_delete_object : bool = false;
+var in_delete_object : bool = false
 
 var placement_position: Vector2
 var cell_array: Array[Vector2i] = []
+
+var is_dragging_path: bool = false
+var path_start_pos: Vector2i
+var path_preview_cells: Array[Vector2i] = []
 
 
 func _ready() -> void:
@@ -42,8 +44,8 @@ func _input(event: InputEvent) -> void:
 		_handle_building_click(event)
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	elif in_path_placement:
+		_handle_path_drag_input(event)
 		_handle_placement_preview(event)
-		_handle_building_click(event)
 		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
 	elif in_delete_object:
 		_handle_delete_object(event)
@@ -52,7 +54,6 @@ func _input(event: InputEvent) -> void:
 
 func _on_building_signal(building:Building)->void:
 	start_building(building)
-
 
 
 func start_building(building: Building) -> void:
@@ -77,6 +78,9 @@ func stop_building() -> void:
 	building_data = null
 	path_data = null
 	preview.texture = null
+	preview.rotation = 0;
+	is_dragging_path = false
+	path_preview_cells.clear()
 	
 func _update_mouse_positions() -> void:
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
@@ -89,8 +93,12 @@ func _update_mouse_positions() -> void:
 func _handle_rotation_input() -> void:
 	if Input.is_key_pressed(KEY_R):
 		preview.rotate(PI / 2)
+		effect_size = Vector2(effect_size.y, effect_size.x)
 
 func _handle_placement_preview(event: InputEvent) -> void:
+	if is_dragging_path:
+		return
+		
 	_clear_previous_preview()
 	can_be_placed = true
 
@@ -102,11 +110,49 @@ func _handle_placement_preview(event: InputEvent) -> void:
 			var pos: Vector2i = tile_under_mouse + Vector2i(i, j)
 			cell_array.append(pos)
 			var cell_world_pos: Vector2 = map_to_local(pos)
-			if _cell_collides(cell_world_pos):
-				set_cell(pos, 0, Vector2i(1, 0))
-				can_be_placed = false
+			
+			var has_collision = _cell_collides(cell_world_pos)
+			var is_adjacent_to_path = false
+			if in_path_placement:
+				is_adjacent_to_path = _is_adjacent_to_path(cell_world_pos)
+			if in_path_placement:
+				if has_collision or not is_adjacent_to_path:
+					set_cell(pos, 0, Vector2i(1, 0))
+					can_be_placed = false
+				else:
+					set_cell(pos, 0, Vector2i(2, 0))
 			else:
-				set_cell(pos, 0, Vector2i(2, 0))
+				if has_collision:
+					set_cell(pos, 0, Vector2i(1, 0))
+					can_be_placed = false
+				else:
+					set_cell(pos, 0, Vector2i(2, 0))
+
+func _is_adjacent_to_path(cell_world_pos: Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var tile_size = tile_set.tile_size
+	var directions = [
+		Vector2(-tile_size.x, 0), 
+		Vector2(tile_size.x, 0),  
+		Vector2(0, -tile_size.y), 
+		Vector2(0, tile_size.y)  
+	]
+	
+	for direction in directions:
+		var check_pos = cell_world_pos + direction
+		
+		var query := PhysicsPointQueryParameters2D.new()
+		query.position = check_pos
+		query.collide_with_areas = true
+		query.collision_mask = 0xFFFFFFFF
+		
+		var result = space_state.intersect_point(query, 8)
+		
+		for hit in result:
+			if hit.collider is Path:
+				return true
+	
+	return false
 
 func _handle_building_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and can_be_placed:
@@ -182,6 +228,8 @@ func stop_building_path() -> void:
 	path_data = null
 	preview.texture = null
 	has_to_place_path = false
+	is_dragging_path = false
+	path_preview_cells.clear()
 	return
 
 func build_path():
@@ -194,6 +242,94 @@ func build_path():
 
 func delete_object():
 	in_delete_object = !in_delete_object
+
+func _handle_path_drag_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var tile_under_mouse: Vector2i = local_to_map(to_local(get_global_mouse_position()))
+			path_start_pos = tile_under_mouse
+			is_dragging_path = true
+			path_preview_cells.clear()
+			_clear_previous_preview()
+			_update_path_preview()
+		else:
+			if is_dragging_path and can_be_placed:
+				_place_all_paths()
+			is_dragging_path = false
+			path_preview_cells.clear()
+			_clear_previous_preview()
+	
+	if is_dragging_path:
+		_update_path_preview()
+
+func _update_path_preview() -> void:
+	_clear_previous_preview()
+	path_preview_cells.clear()
+	can_be_placed = true
+	
+	var tile_under_mouse: Vector2i = local_to_map(to_local(get_global_mouse_position()))
+	
+	var cells_in_line = _get_line_cells(path_start_pos, tile_under_mouse)
+	
+	var at_least_one_connected = false
+	
+	for cell_pos in cells_in_line:
+		path_preview_cells.append(cell_pos)
+		cell_array.append(cell_pos)
+		var cell_world_pos: Vector2 = map_to_local(cell_pos)
+		
+		var has_collision = _cell_collides(cell_world_pos)
+		var is_adjacent_to_path = _is_adjacent_to_path(cell_world_pos)
+		
+		if is_adjacent_to_path:
+			at_least_one_connected = true
+		
+		if has_collision:
+			set_cell(cell_pos, 0, Vector2i(1, 0))
+			can_be_placed = false
+		elif not at_least_one_connected and cell_pos != cells_in_line[cells_in_line.size() - 1]:
+			set_cell(cell_pos, 0, Vector2i(2, 0))
+		else:
+			set_cell(cell_pos, 0, Vector2i(2, 0))
+	
+	if not at_least_one_connected:
+		can_be_placed = false
+		for cell_pos in cell_array:
+			set_cell(cell_pos, 0, Vector2i(1, 0))
+
+func _get_line_cells(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	var current = from
+	
+	while current.x != to.x:
+		cells.append(current)
+		if current.x < to.x:
+			current.x += 1
+		else:
+			current.x -= 1
+	
+	while current.y != to.y:
+		cells.append(current)
+		if current.y < to.y:
+			current.y += 1
+		else:
+			current.y -= 1
+	
+	cells.append(to)
+	
+	return cells
+
+func _place_all_paths() -> void:
+	for cell_pos in path_preview_cells:
+		var cell_world_pos = map_to_local(cell_pos)
+		var instance: Path = load("res://scenes/buildings/Path.tscn").instantiate()
+		instance.position = cell_world_pos
+		instance.name = "Path" + str(n_path)
+		n_path += 1
+		%PathRegions.add_child(instance)
+		UiController.emit_validate_building_path(instance)
+	
+	build_path()
 	
 	
 	
