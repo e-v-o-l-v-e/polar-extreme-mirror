@@ -48,7 +48,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer"]
+[node name="btnRecruit" type="Button" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 text = "Recruter"
@@ -60,16 +60,16 @@ layout_mode = 2
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="txtAssigned" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Assignés à un batiment"
 
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="nbrAssigned" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "000"
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="btnAssignToBat" type="Button" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -80,11 +80,11 @@ custom_minimum_size = Vector2(225, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="txtAssignedProj" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Assignés à un projet"
 
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="nbrAssignedProj" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "000"
@@ -94,11 +94,11 @@ custom_minimum_size = Vector2(225, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="txtUnassigned" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Non assignés"
 
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="nbrUnassigned" type="Label" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "000"
@@ -108,4 +108,5 @@ visible = false
 layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/btnRecruit" to="." method="_on_btn_recruit_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/btnAssignToBat" to="." method="_on_button_pressed"]

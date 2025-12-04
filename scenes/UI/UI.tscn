@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://on73whrfey7o"]
+[gd_scene load_steps=18 format=3 uid="uid://on73whrfey7o"]
 
 [ext_resource type="Script" uid="uid://o8pamx1yydlh" path="res://scripts/UI/ui.gd" id="1_5en4g"]
 [ext_resource type="Texture2D" uid="uid://pthdnyca7pek" path="res://assets/UI/test.png" id="1_dj8aq"]
@@ -22,9 +22,17 @@ region_rect = Rect2(96, 0, 32, 32)
 texture = ExtResource("5_75u2n")
 region_rect = Rect2(0, 448, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6q2i"]
+atlas = ExtResource("5_75u2n")
+region = Rect2(0, 448, 64, 64)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yamhi"]
 texture = ExtResource("5_75u2n")
 region_rect = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6oqk"]
+atlas = ExtResource("5_75u2n")
+region = Rect2(0, 448, 64, 64)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qd4ol"]
 texture = ExtResource("5_75u2n")
@@ -156,20 +164,31 @@ theme_override_constants/separation = 10
 [node name="btnPath" parent="BaseContainer/buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("7_84lt7")
+textBuildingName = "Ajouter des chamins"
+textPopup = "Les chemins servent à ne pas mourir de froid"
+icon_pos = Vector2(3, 0)
 
 [node name="btnCat1" parent="BaseContainer/buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("8_2ttv2")
+textBuildingName = "Créer un bâtiment de recherche"
+textPopup = "Les bâtiments de recherche"
 category = 1
 
 [node name="btnCat2" parent="BaseContainer/buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("8_2ttv2")
+textBuildingName = "Créer un bâtiment de ..."
+textPopup = "Les bâtiments de ..."
+icon_pos = Vector2(1, 0)
 category = 2
 
 [node name="btnCat3" parent="BaseContainer/buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("8_2ttv2")
+textBuildingName = "Créer un bâtiment d'énergie"
+textPopup = "Les bâtiments d'énergie"
+icon_pos = Vector2(2, 0)
 category = 3
 
 [node name="btnDelete" parent="BaseContainer/buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
@@ -194,30 +213,42 @@ theme_override_constants/separation = 10
 [node name="btnLabGlaciology" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Laboratoire de glaciologie"
+icon_pos = Vector2(0, 1)
 
 [node name="btnLabPhysicAtmo" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Laboratoire de physique de l'atmosphère"
+icon_pos = Vector2(0, 2)
 btype = 1
 
 [node name="btnLabMagne" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Laboratoire de magnétisme & sismologie"
+icon_pos = Vector2(0, 3)
 btype = 2
 
 [node name="btnLabBiology" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Laboratoire de biologie humaine"
+icon_pos = Vector2(0, 4)
 btype = 3
 
 [node name="btnIcemine" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Mine de glace"
+icon_pos = Vector2(0, 5)
 btype = 4
 
 [node name="btnSerre" parent="BaseContainer/buildingsMenu/hBoxBtnCat1" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Serre"
+icon_pos = Vector2(0, 6)
 btype = 5
 
 [node name="btnBack" type="Button" parent="BaseContainer/buildingsMenu/hBoxBtnCat1"]
@@ -226,6 +257,7 @@ layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxTexture_mhjpf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mhjpf")
 theme_override_styles/normal = SubResource("StyleBoxTexture_mhjpf")
+icon = SubResource("AtlasTexture_u6q2i")
 
 [node name="hBoxBtnCat2" type="HBoxContainer" parent="BaseContainer/buildingsMenu"]
 visible = false
@@ -235,9 +267,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -296.0
+offset_left = -254.0
 offset_top = -32.0
-offset_right = 296.0
+offset_right = 254.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -246,42 +278,50 @@ theme_override_constants/separation = 10
 [node name="btnDormitory" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Chambres"
+icon_pos = Vector2(1, 1)
 btype = 6
 
 [node name="btnKitchen" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
-btype = 7
-
-[node name="btnDinning" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
-layout_mode = 2
-script = ExtResource("9_u6q2i")
+textBuildingName = "Cuisines"
+icon_pos = Vector2(1, 2)
 btype = 7
 
 [node name="btnToilets" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Toilettes"
+icon_pos = Vector2(1, 4)
 btype = 9
 
 [node name="btnShower" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Douches"
+icon_pos = Vector2(1, 5)
 btype = 8
 
 [node name="btnRest" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Salle de repos"
+icon_pos = Vector2(1, 6)
 btype = 10
 
 [node name="btnSport" parent="BaseContainer/buildingsMenu/hBoxBtnCat2" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Salle de sport"
+icon_pos = Vector2(1, 7)
 btype = 11
 
 [node name="btnBack" type="Button" parent="BaseContainer/buildingsMenu/hBoxBtnCat2"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_yamhi")
+icon = SubResource("AtlasTexture_e6oqk")
 
 [node name="hBoxBtnCat3" type="HBoxContainer" parent="BaseContainer/buildingsMenu"]
 visible = false
@@ -302,16 +342,22 @@ theme_override_constants/separation = 10
 [node name="btnRecycle" parent="BaseContainer/buildingsMenu/hBoxBtnCat3" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Tri des déchets"
+icon_pos = Vector2(2, 1)
 btype = 12
 
 [node name="btnWater" parent="BaseContainer/buildingsMenu/hBoxBtnCat3" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Recyclage de l'eau"
+icon_pos = Vector2(2, 2)
 btype = 13
 
 [node name="btnElec" parent="BaseContainer/buildingsMenu/hBoxBtnCat3" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("9_u6q2i")
+textBuildingName = "Centrale électrique"
+icon_pos = Vector2(2, 3)
 btype = 14
 
 [node name="btnBack" type="Button" parent="BaseContainer/buildingsMenu/hBoxBtnCat3"]

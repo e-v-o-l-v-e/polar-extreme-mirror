@@ -1,6 +1,14 @@
 extends MarginContainer
 
 @onready var menu_assignation_scientifiques: MarginContainer = $HBoxContainer/MenuAssignationScientifiques
+@onready var nbr_assigned: Label = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/nbrAssigned
+@onready var nbr_assigned_proj: Label = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/nbrAssignedProj
+@onready var nbr_unassigned: Label = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3/nbrUnassigned
+
+var nbrScientists := 0
+var nbrScientistsAssigned := 0
+var nbrScientistsAssignedToProject := 0
+var nbrScientistsUnassigned := 0
 
 
 func _on_button_pressed() -> void:
@@ -13,3 +21,10 @@ func _on_button_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		menu_assignation_scientifiques.visible = false
+
+
+func _on_btn_recruit_pressed() -> void:
+	UiController.emit_enroll_scientist()
+	nbrScientists += 1
+	nbrScientistsUnassigned += 1
+	nbr_unassigned.text = str(nbrScientistsUnassigned)
