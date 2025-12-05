@@ -10,6 +10,7 @@ var time = 30
 
 
 func setName(text : String) :
+	
 	nom.text = text
 	ID = int(text)
 
