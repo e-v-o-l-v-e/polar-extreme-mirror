@@ -6,6 +6,7 @@ var path_factory = load("res://scripts/factories/PathFactory.gd").new()
 var buildingsIds := {}
 
 var building_counter := 0
+var building_list := [Building]
 var hovered_building : Building = null
 
 var buildings_positions = {
@@ -40,6 +41,8 @@ func create_building(btype : Enums.BUILDING_TYPE) -> Building:
 		print(str(btype) + building.name)
 		print("\n")
 		
+	building_list.append(building)
+		
 	return building
 
 func create_path() -> Path:
@@ -56,6 +59,7 @@ func register(building : Building):
 func unregister(building:Building):
 	var type = building.get_building_type()
 	buildings_positions[type].erase(building)
+	building_list.erase(building)
 	
 func get_building(id :int) -> Building:
 	return buildingsIds[id]
@@ -65,3 +69,6 @@ func get_random_building_position() -> Vector2:
 		return buildings_positions_no_group.pick_random()
 	else :
 		return Vector2(0,0)
+
+func get_all_buildings() -> Array[Building]:
+	return building_list

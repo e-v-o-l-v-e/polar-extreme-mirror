@@ -68,11 +68,28 @@ func get_list(type: Enums.BUILDING_TYPE, building: Building) -> Array[Project]:
 			source = list_greenhouse
 		_:
 			source = []
-		
+
 	var new_list: Array[Project]
 	for example_project: Project in source:
 		var new_project := example_project.copy()
 		new_project.set_building(building)
 		new_list.append(new_project)
-		
+
 	return new_list
+	
+func get_running_project() -> Array[Project]:
+	var running: Array[Project] = []
+	var bm = GameController.get_building_manager()
+	var blist = bm.get_all_buildings()
+
+	for building in blist:
+		if building is not BuildingScience:
+			continue
+		var plist = building.get_projects()
+		if not plist:
+			continue
+		for project in plist:
+			if project.state == 0 or project.state == 1:
+				running.append(project)
+
+	return running

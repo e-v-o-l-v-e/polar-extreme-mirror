@@ -37,6 +37,9 @@ func _init():
 
 func set_projects(plist: Array[Project]) -> void:
 	projets_list = plist
+	
+func get_projects() -> Array[Project]:
+	return projets_list
 
 func scientists_change_working(n: int):
 	nb_scientists_working += n
