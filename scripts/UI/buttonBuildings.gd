@@ -68,5 +68,4 @@ func _on_button_pressed() -> void:
 
 
 func afficherPopup() -> void :
-	pass
-	#popup.setDesc()
+	popup.setDesc(GameController.get_building_description(btype))
