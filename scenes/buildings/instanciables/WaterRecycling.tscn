@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw4ka37hokrdx"]
+[gd_scene load_steps=5 format=3 uid="uid://cw4ka37hokrdx"]
 
 [ext_resource type="PackedScene" uid="uid://b6y08a0igq27q" path="res://scenes/buildings/BuildingUtility.tscn" id="1_s6tpw"]
+[ext_resource type="Texture2D" uid="uid://3oyutexfssi5" path="res://assets/buildings/utils/water.png" id="2_uips4"]
 
-[node name="BuildingUtility" instance=ExtResource("1_s6tpw")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75e2j"]
+size = Vector2(95, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5865t"]
+
+[node name="WaterRecycling" instance=ExtResource("1_s6tpw")]
 building_name = "Recyclage de l'eau"
 building_description = "Unité de traitement technique et vitale. Elle transforme toutes les eaux usées (douches, lavabos, cuisines) en eau pure pour être réutilisée, souvent pour les toilettes ou les labos."
+
+[node name="Door" parent="." index="0"]
+position = Vector2(0, 80)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_uips4")
+
+[node name="BuildingZone" parent="." index="2"]
+shape = SubResource("RectangleShape2D_75e2j")
+
+[node name="DoorCollision" parent="." index="3"]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_5865t")

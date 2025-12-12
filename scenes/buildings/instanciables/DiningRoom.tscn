@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://8wskbvlktw4d"]
+[gd_scene load_steps=5 format=3 uid="uid://8wskbvlktw4d"]
 
 [ext_resource type="PackedScene" uid="uid://b6y08a0igq27q" path="res://scenes/buildings/BuildingUtility.tscn" id="1_x7ujq"]
+[ext_resource type="Texture2D" uid="uid://bwut2v4y3tid3" path="res://assets/buildings/life/canteen.png" id="2_xy5ji"]
 
-[node name="BuildingUtility" instance=ExtResource("1_x7ujq")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjlrj"]
+size = Vector2(95, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3c8v"]
+
+[node name="DiningRoom" instance=ExtResource("1_x7ujq")]
 building_name = "Salle à manger"
 building_description = "Grande table commune, bibliothèque et vue sur l'extérieur. Bien plus qu'un lieu de repas, c'est l'agora de la station où se tissent les liens et où se partagent les informations"
+
+[node name="Door" parent="." index="0"]
+position = Vector2(0, 47)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_xy5ji")
+
+[node name="BuildingZone" parent="." index="2"]
+shape = SubResource("RectangleShape2D_hjlrj")
+
+[node name="DoorCollision" parent="." index="3"]
+position = Vector2(0, 47)
+shape = SubResource("RectangleShape2D_w3c8v")
