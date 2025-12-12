@@ -2,20 +2,20 @@ extends Node
 class_name BuildingManager
 
 static var building_descriptions = [
-	"Bâtiment aux parois blanches et aux surfaces ultra-propres. Ici, les carottes de glace, archives du climat terrestre, sont analysées. Ce cœur scientifique décrypte l'histoire du climat sur des centaines de milliers d'années.",
-	"Couronné d'instruments de mesure et d'antennes. Il étudie la composition de l'air, le trou dans la couche d'ozone et les rayonnements cosmiques dans l'un des airs les plus purs de la planète.",
+	"La tranchée « froide » est un bâtiment séparé en deux espaces.La première zone sert à stocker temporairement des carottes de glace.Les espaces plus en arrière servaient à scier, échantillonner et réaliser une première spectrométrie des carottes.",
+	"Il est composé d’un shelter en bois qui abrite les espaces de travail des scientifiques, un espace avec le matériel nécessaire pour bricoler les télescopes, des ordinateurs, un serveur de stockage et de transfert des données acquises par les télescopes.Il y a également des dômes accueillant les télescopes et un petit shelter de contrôle des instruments installés.",
 	"Une structure isolée, sans métal, souvent enterrée. Il enregistre les plus infimes vibrations de la Terre et les variations du champ magnétique, loin du bruit humain",
-	"Équipé de matériel médical et physiologique de pointe. Il est dédié à l'étude de l'adaptation du corps humain à l'isolement, au froid extrême et aux cycles de lumière polaires.",
-	"Un puits ou une cave foré dans la glace millénaire. Cet entrepôt naturel à -50°C préserve les précieuses carottes de glace avant leur analyse et fournit de l'eau de fonte 'pure' pour les expériences",
-	"Une bulle de vie et de chlorophylle sous lumière artificielle. Cette unité de production hydroponique fournit des légumes frais et améliore le moral par sa simple présence",
-	"Des cellules individuelles minimalistes mais personnalisables. Sanctuaires privés essentiels pour le repos et la préservation de l'intimité dans un environnement collectif intense.",
-	"Cœur chaleureux et odorant de la station. Lieu de transformation des vivres et de création culinaire, c'est un espace de travail partagé et de convivialité informelle",
-	"Espace limité où l'eau est un luxe comptabilisé. Les sessions sont courtes et régulées, faisant de ce moment une routine précieuse.",
-	"Installations sanitaires basiques mais essentielles. Conçues pour un usage économe en eau et un traitement séparé des déchets solides et liquides.",
-	"Espace convivial avec canapés, jeux, musique et films. Dédié au divertissement et à la déconnexion, loin des laboratoires et des écrans de travail.",
+	"Le laboratoire de biologie humaine situé à la station Concordia en Antarctique est dédié à l'étude de l'adaptation humaine aux conditions extrêmes d'isolement de confinement et de climat sévère, en lien avec les missions spatiales futures.",
+	"Une importante campagne de forage en Antarctique a permis d'atteindre une carotte de glace datant d'au moins 1,2 million d'années, marquant un progrès majeur dans l'étude du climat passé.",
+	"Une serre est actuellement en cours d'installation à proximité du pôle Sud en Antarctique,marquant la première infrastructure de ce type sur le continent. Ce projet, mené par l'Université d'Arizona, vise à cultiver des légumes comme la laitue, les épinards et les fraises pour les chercheurs isolés à la Station de recherche Amundsen Scott",
+	"Les conditions de vie sont extrêmes, avec des vents pouvant dépasser 100 km/h et une nuit polaire prolongée,mais la station est équipée de systèmes de chauffage, de communication et de production d’eau pour assurer la survie et le confort des scientifiques.",
+	"Équipée de vélos, tapis de course et poids. Indispensable pour lutter contre l'atrophie musculaire et la baisse de moral induites par le confinement et le froid",
+	"Les douches recyclantes,une technologie innovante pour la gestion des eaux usées, ont été développées dans le cadre de recherches menées pour des stations polaires, notamment en Antarctique. Cette technologie vient de l'Agence Spatiale Européenne.",
+	"En Antarctique, les installations sanitaires varient selon le type d'activité, que ce soit pour des expéditions personnelles, des stations de recherche ou des croisières.Les besoins sont gérés en creusant un trou à l'entrée de la tente, qui gèle rapidement, ou en utilisant une « gourde pipi » pour éviter de sortir la nuit.",
+	"Cette sale est essentielle pour le bien être des scientifiques,on peut y retrouver une bibiliothéque,une Tv ,des handSpinners ,un billard, un babyfoot,une prostituéeun bar a salade polonaise,un bon pc pour jouer a cyberpunk 2077.Sert de lieu de rassemblement pour les membres de l'équipe, notamment lors des briefings hebdomadaires.",
 	"Équipée de vélos, tapis de course et poids. Indispensable pour lutter contre l'atrophie musculaire et la baisse de moral induites par le confinement et le froid.",
 	"Salle technique stricte avec des bacs de couleurs. Chaque type de déchet (organique, plastique, métal, dangereux) y est scrupuleusement séparé pour un traitement adapté.",
-	"Unité de traitement technique et vitale. Elle transforme toutes les eaux usées (douches, lavabos, cuisines) en eau pure pour être réutilisée, souvent pour les toilettes ou les labos.",
+	"La station est pourvue de deux systèmes d’approvisionnement en eau. Une eau « fraîche » est produite par fonte de glace(4 conteneurs/cuves de 20m)de cette eau sont stockés : filtrée, traitée par osmose et rayons UV, elle est potable et sert à la cuisine, à l’eau de boisson.",
 	"Le battement de cœur bruyant et chaud de la base. Abritant les générateurs, c'est la source d'énergie pour la chaleur, la lumière, la science et la communication."
 ]
 
