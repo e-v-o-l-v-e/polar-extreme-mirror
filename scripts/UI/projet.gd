@@ -41,20 +41,5 @@ func _ready() -> void:
 	#timePercentage.max_value = time
 
 
-func _on_mouse_entered() -> void:
-	UiController.emit_lock_scroll_cam(true)
-	UiController.emit_lock_scroll_cam(true)
-	UiController.emit_lock_scroll_cam(true)
-	UiController.emit_lock_scroll_cam(true)
-
-
-func _on_mouse_exited() -> void:
-	UiController.emit_lock_scroll_cam(false)
-	UiController.emit_lock_scroll_cam(false)
-	UiController.emit_lock_scroll_cam(false)
-	UiController.emit_lock_scroll_cam(false)
-	
-
-
 func _on_button_pressed() -> void:
 	pass # Replace with function body.

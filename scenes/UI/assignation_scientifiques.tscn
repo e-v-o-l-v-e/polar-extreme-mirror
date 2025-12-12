@@ -29,7 +29,7 @@ theme_override_constants/margin_bottom = 3
 [node name="nine" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_v4cla")
-region_rect = Rect2(320, 384, 63, 64)
+region_rect = Rect2(320, 448, 63, 64)
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10

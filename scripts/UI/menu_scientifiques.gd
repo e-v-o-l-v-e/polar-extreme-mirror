@@ -25,6 +25,4 @@ func _on_visibility_changed() -> void:
 
 func _on_btn_recruit_pressed() -> void:
 	UiController.emit_enroll_scientist()
-	nbrScientists += 1
-	nbrScientistsUnassigned += 1
-	nbr_unassigned.text = str(nbrScientistsUnassigned)
+	nbr_unassigned.text = str(GameController.get_scientist_total())

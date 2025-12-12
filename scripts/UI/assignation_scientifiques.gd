@@ -3,13 +3,11 @@ extends MarginContainer
 @onready var nom: Label = $MarginContainer/nine/MarginContainer/HBoxContainer/nom
 @onready var nombre_scient: Label = $MarginContainer/nine/MarginContainer/HBoxContainer/nombreScient
 
-var ID
 
 var nombreScientifiques = 0
 
 func setName(text : String) :
 	nom.text = text
-	ID = int(text)
 
 func setVisibility(vis : bool) :
 	visible = vis

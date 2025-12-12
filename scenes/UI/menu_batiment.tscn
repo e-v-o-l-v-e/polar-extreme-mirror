@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4q2wpp4uf3ys"]
+[gd_scene load_steps=7 format=3 uid="uid://b4q2wpp4uf3ys"]
 
 [ext_resource type="Script" uid="uid://8j55h6nlx8uw" path="res://scripts/UI/menu_batiment.gd" id="1_al7u3"]
 [ext_resource type="Texture2D" uid="uid://h8vpungsiv7a" path="res://assets/UI/tilesetT3.png" id="1_ymk3k"]
 [ext_resource type="PackedScene" uid="uid://biyp1uwmfu6u4" path="res://scenes/UI/projet.tscn" id="3_qxndm"]
+[ext_resource type="PackedScene" uid="uid://6p4mfp5atp" path="res://scenes/UI/popup_desc_buindings.tscn" id="4_qxndm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxndm"]
 atlas = ExtResource("1_ymk3k")
@@ -197,3 +198,8 @@ layout_mode = 2
 [node name="Projet5" parent="NinePatchRect/VBoxContainer/VBoxContainer/ScrollContainer/projetContainer" instance=ExtResource("3_qxndm")]
 visible = false
 layout_mode = 2
+
+[node name="popDescBuilding" parent="." instance=ExtResource("4_qxndm")]
+visible = false
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect/btnExpl" to="." method="_on_btn_expl_pressed"]

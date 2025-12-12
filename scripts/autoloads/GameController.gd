@@ -38,9 +38,29 @@ func _on_validate_building_placement(building:Building):
 func _on_delete_building(building:Building):
 	building_manager.unregister(building)
 
+
+
+
 func _on_enroll_scientist():
 	var scientist_to_place : Scientist = scientist_manager.enroll_scientist()
 	world_manager.place_scientist(scientist_to_place)
+	
+func assign_scientist(n_scientist : int) :
+	scientist_manager.assign_scientist(n_scientist)
+	
+func deassign_scientist(n_scientist : int) :
+	scientist_manager.deassign_scientist(n_scientist)
+
+func enough_scientist_for_assignement(n_scientist : int) -> bool :
+	return scientist_manager.enough_scientist_for_assignement(n_scientist) 
+	
+func get_scientist_total() -> int :
+	return scientist_manager.get_scientist_total()
+	
+func get_scientist_occupied() -> int :
+	return scientist_manager.get_scientist_occupied()
+
+
 	
 func get_gauges() -> Gauges:
 	return gauges
@@ -56,6 +76,12 @@ func notify_scientist_new_hour(hour : int):
 
 func get_random_building_position() -> Vector2:
 	return building_manager.get_random_building_position()
+	
+func get_all_buildings() -> Array[Building] :
+	if building_manager:
+		return building_manager.buildings_list
+	else :
+		return []
 
 func zoom_camera(building : Building):
 	UiController.emit_zoom_building(building.global_position)

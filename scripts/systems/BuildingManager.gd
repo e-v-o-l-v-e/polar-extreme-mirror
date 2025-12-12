@@ -26,6 +26,7 @@ var buildingsIds := {}
 var building_counter := 0
 var hovered_building : Building = null
 
+var buildings_list : Array[Building]= []
 var buildings_positions := []
 
 func create_building(btype : Enums.BUILDING_TYPE) -> Building:
@@ -49,6 +50,7 @@ func register(building : Building):
 	building_counter += 1
 	var type = building.get_building_type()
 	buildings_positions.append(building.get_door_position())
+	buildings_list.append(building)
 	
 func unregister(building:Building):
 	var type = building.get_building_type()

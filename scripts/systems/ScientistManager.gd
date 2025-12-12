@@ -3,5 +3,24 @@ class_name ScientistManager
 
 var scientist_factory : ScientistFactory = load("res://scripts/factories/ScientistFactory.gd").new()
 
-func enroll_scientist() -> Scientist:
+var scientist_total = 0
+var scientist_occupied = 0
+
+func enroll_scientist() -> Scientist :
+	scientist_total += 1
 	return scientist_factory.make_scientist()
+	
+func assign_scientist(n_scientist : int) :
+	scientist_occupied += n_scientist
+	
+func deassign_scientist(n_scientist : int) :
+	scientist_occupied -= n_scientist
+
+func enough_scientist_for_assignement(n_scientist : int) -> bool :
+	return n_scientist <= (scientist_total - scientist_occupied) 
+	
+func get_scientist_total() -> int :
+	return scientist_total
+	
+func get_scientist_occupied() -> int :
+	return scientist_occupied

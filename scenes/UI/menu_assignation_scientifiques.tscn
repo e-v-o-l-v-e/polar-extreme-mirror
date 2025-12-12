@@ -114,5 +114,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 7)
 layout_mode = 2
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ninePatchRect/ButtonTestAS" to="." method="_on_button_test_pressed"]
 [connection signal="pressed" from="ninePatchRect/ButtonTestDAS" to="." method="_on_button_test_2_pressed"]

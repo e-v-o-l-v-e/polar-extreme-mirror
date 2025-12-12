@@ -13,35 +13,6 @@ var arrayBats = Array()
 
 
 
-func _on_prev_pressed() -> void:
-	if (nbPage > 1) :
-		for proj in arrayBats :
-			proj.setVisibility(false)
-			
-		nbPage -= 1
-		nbBatPerPage = 0
-		
-		for i in 5 :
-			arrayBats.get(i+5*(nbPage-1)).setVisibility(true)
-			nbBatPerPage += 1
-
-
-func _on_next_pressed() -> void:
-	if (nbPage < nbPageTot) :
-		for i in 5 :
-			arrayBats.get(i+5*(nbPage-1)).setVisibility(false)
-			
-		nbPage += 1
-		nbBatPerPage = 0
-		
-		if (nbPage == nbPageTot) :
-			for i in nbBat%5 :
-				arrayBats.get(i+5*(nbPage-1)).setVisibility(true)
-				nbBatPerPage += 1
-		else :
-			for i in 5 :
-				arrayBats.get(i+5*(nbPage-1)).setVisibility(true)
-				nbBatPerPage += 1
 
 
 func _on_button_test_pressed() -> void:
@@ -74,4 +45,19 @@ func _on_button_test_2_pressed() -> void:
 		if nbBatPerPage == 0 :
 			nbBatPerPage = 4
 			nbPageTot -= 1
-			_on_prev_pressed()
+
+
+func _on_visibility_changed() -> void:
+	if visible == true :
+		var listBuildings = GameController.get_all_buildings()
+		if bat_container :
+			for build in bat_container.get_children() :
+				bat_container.remove_child(build)
+			
+		for build in listBuildings :
+			var Bat = BatScene.instantiate()
+			arrayBats.append(Bat)
+			bat_container.add_child(Bat)
+			
+			Bat.setName(build.building_name)
+			Bat.setVisibility(true)

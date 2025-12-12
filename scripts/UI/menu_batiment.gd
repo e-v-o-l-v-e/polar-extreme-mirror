@@ -6,6 +6,9 @@ extends MarginContainer
 @onready var projet_container: VBoxContainer = $NinePatchRect/VBoxContainer/VBoxContainer/ScrollContainer/projetContainer
 
 @onready var lbl_desc: Label = $NinePatchRect/VBoxContainer/MarginContainer/VBoxContainer/lblDesc
+@onready var pop_desc_building: Popup = $popDescBuilding
+
+var buil : Building
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +20,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_click_on_building(building : Building):
+	buil = building
+	
 	lbl_name.text = building.get_building_name()
 	
 	lbl_desc.text = building.building_description
@@ -37,3 +42,8 @@ func _on_click_on_building(building : Building):
 		
 		
 		proj.setVisibility(true)
+
+
+func _on_btn_expl_pressed() -> void:
+	pop_desc_building.visible = true
+	pop_desc_building.setDesc(buil.building_description)

@@ -18,7 +18,7 @@ region_rect = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ob0dx"]
 atlas = ExtResource("5_75u2n")
-region = Rect2(256, 65, 64, 63)
+region = Rect2(192, 65, 64, 63)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ua6yw"]
 texture = ExtResource("5_75u2n")
@@ -26,7 +26,7 @@ region_rect = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81vvl"]
 atlas = ExtResource("5_75u2n")
-region = Rect2(192, 64, 64, 64)
+region = Rect2(256, 64, 64, 64)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1j05"]
 texture = ExtResource("9_ob0dx")
@@ -155,11 +155,17 @@ mouse_filter = 0
 
 [node name="buildingsMenu" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(650, 100)
-layout_mode = 2
-offset_left = 630.0
-offset_top = 980.0
-offset_right = 1280.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -100.0
+offset_right = 325.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 0
@@ -193,7 +199,7 @@ theme_override_constants/separation = 10
 [node name="btnPath" parent="buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("7_84lt7")
-textBuildingName = "Ajouter des chamins"
+textBuildingName = "Ajouter des chemins"
 textPopup = "Les chemins servent à ne pas mourir de froid"
 icon_pos = Vector2(3, 0)
 
@@ -224,6 +230,7 @@ category = 3
 layout_mode = 2
 
 [node name="hBoxBtnCat1" type="HBoxContainer" parent="buildingsMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -422,15 +429,21 @@ icon = SubResource("AtlasTexture_u6q2i")
 flat = true
 
 [node name="ParametersMargin" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_left = 1835.0
-offset_top = 995.0
-offset_right = 1910.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -85.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Parameters" type="Button" parent="ParametersMargin"]
