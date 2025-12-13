@@ -25,3 +25,5 @@ shape = SubResource("RectangleShape2D_hjlrj")
 [node name="DoorCollision" parent="." index="3"]
 position = Vector2(0, 47)
 shape = SubResource("RectangleShape2D_w3c8v")
+
+[node name="Node2D" type="Node2D" parent="." index="4"]
