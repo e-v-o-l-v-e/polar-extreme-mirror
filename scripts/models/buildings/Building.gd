@@ -58,6 +58,7 @@ func get_door_position():
 	
 func emit_particles():
 	particles.scale = building_zone.shape.get_rect().size / 100
+	particles.amount = building_zone.shape.get_rect().size.length() / 2
 	if not particles.emitting:
 		particles.emitting = true
 		

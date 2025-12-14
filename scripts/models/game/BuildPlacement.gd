@@ -212,6 +212,7 @@ func _handle_building_click(event: InputEvent) -> void:
 		placement_position = preview.position
 		animation_playing = true  
 		animation.play("placementAnimationLib/goodPlacement")
+		_clear_previous_preview()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and not can_be_placed:
 		animation.play("placementAnimationLib/invalidPlacement")
 		
@@ -223,7 +224,6 @@ func _clear_previous_preview() -> void:
 func _handle_animation_end(_anim_name: StringName) -> void:
 	if _anim_name == "placementAnimationLib/goodPlacement" :
 		animation_playing = false 
-		_clear_previous_preview()
 		if in_placement :
 			var instance: Building = building_data
 			instance.rotation = preview.rotation
