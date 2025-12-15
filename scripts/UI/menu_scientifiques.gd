@@ -1,13 +1,17 @@
 extends MarginContainer
+class_name ScientistMenu
 
 @onready var menu_assignation_scientifiques: MarginContainer = $HBoxContainer/MenuAssignationScientifiques
 @onready var nbr_assigned: Label = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/nbrAssigned
 @onready var nbr_unassigned: Label = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/HBoxContainer3/nbrUnassigned
 @onready var btn_recruit: Button = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/NinePatchRect/btnRecruit
+@onready var animation: AnimationPlayer = $HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/NinePatchRect/btnRecruit/AnimationPlayer
 
 var nbrScientists := 0
 var nbrScientistsAssigned := 0
 var nbrScientistsUnassigned := 0
+
+signal not_enough_science()
 
 func _ready() -> void:
 	UiController.update_assign_scientist.connect(_on_update_assign_scientist)
@@ -35,7 +39,11 @@ func _on_btn_recruit_pressed() -> void:
 		nbr_unassigned.text = str(GameController.get_scientist_total())
 		nbrScientists += 1
 		nbrScientistsUnassigned += 1
-	_update_recruit_price()
+		_update_recruit_price()
+	else:
+		if not animation.is_playing():
+			animation.play("not_enough_credit")
+			not_enough_science.emit()
 
 func _on_update_assign_scientist():
 	nbrScientistsAssigned += 1

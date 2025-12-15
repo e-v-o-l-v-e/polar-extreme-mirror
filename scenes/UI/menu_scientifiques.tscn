@@ -1,8 +1,97 @@
-[gd_scene load_steps=5 format=3 uid="uid://w68s7km80fw0"]
+[gd_scene load_steps=9 format=3 uid="uid://w68s7km80fw0"]
 
 [ext_resource type="Script" uid="uid://bn5fv201yp8a6" path="res://scripts/UI/menu_scientifiques.gd" id="1_2bolv"]
 [ext_resource type="Texture2D" uid="uid://b3kxt3v47p0pc" path="res://assets/UI/tilesetT3.png" id="2_54jhy"]
 [ext_resource type="PackedScene" uid="uid://gjn1jddnes48" path="res://scenes/UI/menu_assignation_scientifiques.tscn" id="2_y5bk0"]
+[ext_resource type="AudioStream" uid="uid://l7uu6bkoanwo" path="res://assets/sounds/cancel_short.mp3" id="3_dojrw"]
+
+[sub_resource type="Animation" id="Animation_54jhy"]
+resource_name = "not_enough_credit"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_colors/font_focus_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_colors/font_hover_pressed_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:theme_override_colors/font_hover_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_dojrw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_dojrw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymosl"]
+_data = {
+&"RESET": SubResource("Animation_dojrw"),
+&"not_enough_credit": SubResource("Animation_54jhy")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54jhy"]
 atlas = ExtResource("2_54jhy")
@@ -70,14 +159,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 text = "Recruter"
 flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/NinePatchRect/btnRecruit"]
+libraries = {
+&"": SubResource("AnimationLibrary_ymosl")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer/NinePatchRect/btnRecruit"]
+volume_db = 10.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/ninePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2

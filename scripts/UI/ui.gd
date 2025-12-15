@@ -6,7 +6,8 @@ extends Control
 @onready var lbl_science_per_sec = $hBoxScience/SciencePerSec/lblSciencePerSec
 
 @onready var menu_projects: MarginContainer = $hBoxProjScien/MenuProjects
-@onready var menu_scientists: MarginContainer = $hBoxProjScien/menuScientifics
+@onready var menu_scientists: ScientistMenu = $hBoxProjScien/menuScientifics
+@onready var animation: AnimationPlayer = $hBoxScience/NinePatchRect/lblScience/AnimationPlayer
 
 @onready var h_box_btns: HBoxContainer = $buildingsMenu/hBoxBtns
 @onready var h_box_btn_cat_1: HBoxContainer = $buildingsMenu/hBoxBtnCat1
@@ -22,6 +23,7 @@ func _ready() -> void:
 	UiController.display_building_basic_info.connect(_on_display_building_basic_info)
 	UiController.start_building.connect(_show_keybinds)
 	UiController.validate_building_placement.connect(_hide_keybinds)
+	menu_scientists.not_enough_science.connect(_on_not_enough_science)
 	lbl_science.text = "0"
 	lbl_science_per_sec.text = "0/sec"
 
@@ -77,6 +79,9 @@ func _show_keybinds(_building : Building):
 	lbl_buildings_basic_info.add_theme_color_override("font_color", Color.WHEAT)
 	lbl_buildings_basic_info.text = "R pour pivoter     Clic droit pour placer"
 	lbl_buildings_basic_info.show()
+	
+func _on_not_enough_science():
+	animation.play("not_enough_credit")
 
 func _hide_keybinds(_building : Building):
 	lbl_buildings_basic_info.hide()
