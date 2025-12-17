@@ -25,10 +25,9 @@ var wellness_max := 200
 var wellness_min := 001
 var wellness_decrement_factor := -0.5
 
-## GAUGES MANAGEMENT
+### GAUGES MANAGEMENT ##
 
-
-## Science
+# Science
 func get_science() -> float:
 	return science
 
@@ -49,7 +48,7 @@ func change_science_per_second(value: float) -> void:
 	print(science_per_seconds)
 
 
-# Pollution
+## Pollution
 func get_pollution() -> float:
 	return pollution
 	
@@ -77,9 +76,6 @@ func change_wellness(w: float) -> void:
 
 
 ## UPDATE (every 2 seconds)
-
-
-
 func update_gauges():
 	change_science(science_per_seconds * GameController.update_time)
 	change_pollution(pollution_per_seconds * GameController.update_time)
