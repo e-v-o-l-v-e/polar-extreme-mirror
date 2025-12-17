@@ -43,7 +43,6 @@ func set_button_icon_hovered() -> void:
 func _process(delta: float) -> void:
 	
 	if building_scene:
-		print(building_instance.price)
 		button.disabled = building_instance.price > GameController.get_gauges().science
 
 func _ready() -> void:
