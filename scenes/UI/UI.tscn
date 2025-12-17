@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://on73whrfey7o"]
+[gd_scene load_steps=30 format=3 uid="uid://on73whrfey7o"]
 
 [ext_resource type="Script" uid="uid://cfglvx6t7ul1r" path="res://scripts/UI/ui.gd" id="1_5en4g"]
 [ext_resource type="PackedScene" uid="uid://28bld6ebjyy6" path="res://scenes/UI/menu_projets.tscn" id="3_ua6yw"]
@@ -8,11 +8,15 @@
 [ext_resource type="Script" uid="uid://d0ltfahl0385u" path="res://scripts/UI/buttonBuildPath.gd" id="7_84lt7"]
 [ext_resource type="Script" uid="uid://belta2lfpl277" path="res://scripts/UI/buttonCategory.gd" id="8_2ttv2"]
 [ext_resource type="PackedScene" uid="uid://b4q2wpp4uf3ys" path="res://scenes/UI/menu_batiment.tscn" id="9_e6oqk"]
-[ext_resource type="Texture2D" uid="uid://bs5aawnei770f" path="res://assets/UI/tilesetT3_hovered.png" id="9_ob0dx"]
-[ext_resource type="Script" uid="uid://cly0kdbjknccm" path="res://scripts/UI/buttonBuildings.gd" id="9_u6q2i"]
-[ext_resource type="Texture2D" uid="uid://b3m3k28fnmlei" path="res://assets/UI/tilesetT3_pressed.png" id="10_81vvl"]
+[ext_resource type="Texture2D" uid="uid://ddioolhpqigaw" path="res://assets/UI/tilesetT3_hovered.png" id="9_ob0dx"]
+[ext_resource type="Script" uid="uid://rvw3dbm3viha" path="res://scripts/UI/buttonBuildings.gd" id="9_u6q2i"]
+[ext_resource type="Texture2D" uid="uid://bmvyfsf5ftlhg" path="res://assets/UI/tilesetT3_pressed.png" id="10_81vvl"]
 [ext_resource type="PackedScene" uid="uid://c65o5y2weg82m" path="res://scenes/UI/affichage_projet.tscn" id="12_81vvl"]
 [ext_resource type="PackedScene" uid="uid://cws5sxnaq0d7j" path="res://scenes/UI/gauges.tscn" id="13_t1j05"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_alvv5"]
+font_size = 19
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_t1j05"]
 length = 0.001
@@ -143,6 +147,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Science"
+label_settings = SubResource("LabelSettings_alvv5")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
