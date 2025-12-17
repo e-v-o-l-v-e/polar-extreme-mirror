@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Polar Extreme
+Exec=./usr/bin/polar-extreme.sh
+Categories=Game;
