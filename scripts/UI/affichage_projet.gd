@@ -67,4 +67,4 @@ func setVisibility(vis : bool) :
 
 
 func _on_btn_start_pressed() -> void:
-	pass
+	UiController.emit_start_project(project)

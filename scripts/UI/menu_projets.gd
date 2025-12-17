@@ -5,25 +5,37 @@ extends MarginContainer
 @onready var projet_container: VBoxContainer = $ninePatchRect/VBoxContainer/ScrollContainer/projetContainer
 
 
-var arrayProjects = Array()
+var arrayProjects : Array
+
+
+func _ready() -> void:
+	UiController.start_project.connect(_on_start_project)
 
 
 func _on_visibility_changed() -> void:
-	if visible == true :
+	pass
+	#if visible == true :
 		
-		for proj in projet_container.get_children() :
-			projet_container.remove_child(proj)
-			
-		var listeBuildings = GameController.building_manager.get_building_list()
-		
-		for building : Building in listeBuildings :
-			if building.has_method("get_project_list") :
-				var liste = building.get_project_list()
-		
-				for project : Project in liste :
-					var proj = projectScene.instantiate()
-					projet_container.add_child(proj)
-					proj.setName(project.get_project_name())
-					proj.setStatus(project.get_project_state())
-					proj.setProject(project)
-					proj.setVisibility(true)
+		#for proj in projet_container.get_children() :
+			#projet_container.remove_child(proj)
+			#
+		#var listeBuildings = GameController.building_manager.get_building_list()
+		#
+		#for building : Building in listeBuildings :
+			#if building.has_method("get_project_list") :
+				#var liste = building.get_project_list()
+		#
+				#for project : Project in liste :
+					#var proj = projectScene.instantiate()
+					#projet_container.add_child(proj)
+					#proj.setName(project.get_project_name())
+					#proj.setStatus(project.get_project_state())
+					#proj.setProject(project)
+					#proj.setVisibility(true)
+
+func _on_start_project(project : Project) -> void:
+	var proj := projectScene.instantiate()
+	projet_container.add_child(proj)
+	proj.setProject(project)
+	proj.setVisibility(true)
+	arrayProjects.append(proj)
