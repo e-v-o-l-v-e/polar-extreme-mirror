@@ -47,7 +47,7 @@ func _on_update_deassign_scientist():
 	_update_assign_text()
 
 func _update_recruit_price():
-	btn_recruit.text = "Recruter (" + str(int(GameController.scientist_manager.get_scientist_price())) + ")"
+	btn_recruit.text = "Recruter (Coût : " + str(int(GameController.scientist_manager.get_scientist_price())) + ")"
 
 func _update_assign_text():
 	nbr_assigned.text = str(GameController.scientist_manager.get_scientist_occupied())

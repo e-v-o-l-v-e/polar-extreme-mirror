@@ -312,7 +312,7 @@ category = 2
 [node name="btnCat3" parent="buildingsMenu/hBoxBtns" instance=ExtResource("6_84lt7")]
 layout_mode = 2
 script = ExtResource("8_2ttv2")
-textBuildingName = "Créer un bâtiment d'énergie"
+textBuildingName = "Créer un bâtiment technique"
 textPopup = "Les bâtiments d'énergie"
 icon_pos = Vector2(2, 0)
 category = 3

@@ -55,6 +55,9 @@ func copy() -> Project:
 	)
 	return new_project
 
+func are_conditions_filled() -> bool:
+	return GameController.scientist_manager.get_scientist_non_occupied() >= requirement_scientists
+
 func start():
 	if project_state == 0:
 		console("starting")
