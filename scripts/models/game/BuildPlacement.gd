@@ -96,6 +96,8 @@ func stop_building() -> void:
 	cell_array.clear()
 	self.clear()
 	door_offset = Vector2.ZERO
+	var cursor_texture = load("res://assets/cursor/Ice-normal.png")
+	Input.set_custom_mouse_cursor(cursor_texture)
 	
 func _update_mouse_positions() -> void:
 	var mouse_pos_glob: Vector2 = get_global_mouse_position()
@@ -111,6 +113,7 @@ func _handle_rotation_input() -> void:
 	if Input.is_key_pressed(KEY_R):
 		preview.rotate(PI / 2)
 		effect_size = Vector2(effect_size.y, effect_size.x)
+		
 
 func _handle_placement_preview(event: InputEvent) -> void:
 	if is_dragging_path:
@@ -158,9 +161,8 @@ func _handle_placement_preview(event: InputEvent) -> void:
 			can_be_placed = false
 			for cell_pos in cell_array:
 				set_cell(cell_pos, 0, Vector2i(1, 0))
-
-		
-				set_cell(cell_pos, 0, Vector2i(1, 0))
+	
+	
 
 func _door_touches_path(building: Building, cell_world_pos: Vector2) -> bool:
 	var shape = door.shape
@@ -300,6 +302,8 @@ func stop_building_path() -> void:
 	has_to_place_path = false
 	is_dragging_path = false
 	path_preview_cells.clear()
+	var cursor_texture = load("res://assets/cursor/Ice-normal.png")
+	Input.set_custom_mouse_cursor(cursor_texture)
 	return
 
 func build_path():

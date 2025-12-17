@@ -32,6 +32,10 @@ window/size/borderless=true
 
 imported_resources_path=".godot/imported"
 
+[display]
+
+mouse_cursor/custom_image="uid://d1bib7ohyur5k"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
