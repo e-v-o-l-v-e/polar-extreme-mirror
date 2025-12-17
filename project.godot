@@ -22,6 +22,10 @@ GameController="*res://scripts/autoloads/GameController.gd"
 UiController="*res://scripts/autoloads/UIController.gd"
 settingsValue="*res://scripts/autoloads/settingsValue.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://d1bib7ohyur5k"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
