@@ -58,6 +58,8 @@ func building_get_type() -> Enums.BUILDING_TYPE:
 	return building_type
 	
 func change_science_per_second_production(value: float) -> void:
+	science_per_second += value
+	print(science_per_second)
 	GameController.get_gauges().change_science_per_second(value)
 
 func science_production_pause() -> void:
