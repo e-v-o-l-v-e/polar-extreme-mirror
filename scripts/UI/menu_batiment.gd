@@ -42,9 +42,8 @@ func _on_click_on_building(building : Building):
 		for project in liste :
 			var proj = projectScene.instantiate()
 			projet_container.add_child(proj)
-			proj.setName(project.get_project_name())
-			proj.setStatus(project.get_project_state())
 			proj.setProject(project)
+			proj.instanciateProject()
 			proj.setVisibility(true)
 
 

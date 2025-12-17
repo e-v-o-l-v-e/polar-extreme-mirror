@@ -62,7 +62,7 @@ func copy() -> Project:
 	return new_project
 
 func start():
-	timer.paused = false
+	#timer.paused = false
 	if project_state == 0:
 		console("starting")
 		project_state = 1

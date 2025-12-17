@@ -549,7 +549,6 @@ mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
 [node name="AffichageProjet" parent="." instance=ExtResource("12_81vvl")]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0

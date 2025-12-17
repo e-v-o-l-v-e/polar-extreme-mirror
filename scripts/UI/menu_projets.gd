@@ -37,5 +37,6 @@ func _on_start_project(project : Project) -> void:
 	var proj := projectScene.instantiate()
 	projet_container.add_child(proj)
 	proj.setProject(project)
+	proj.instanciateProject()
 	proj.setVisibility(true)
 	arrayProjects.append(proj)

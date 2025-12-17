@@ -7,19 +7,30 @@ extends MarginContainer
 @onready var timer: Timer = $Timer
 
 
-var timeTotal : int
-var timeLeft : int
-var time : int
-
 var project : Project
 
+var project_started : bool = false
+
+
 func _process(delta: float) -> void:
-	lbl_time_left.text = "%d:%02d" % [floor(timer.time_left / 60), int(timer.time_left) % 60]	# pour afficher au format min:sec
+	if project_started == true and project.get_project_state() == 1 :
+		lbl_time_left.text = "%d:%02d" % [floor(timer.time_left / 60), int(timer.time_left) % 60]	# pour afficher au format min:sec
 
 
 func _ready() -> void:
-	timer.start(time)	# temps en secondes
-	progress_bar.max_value = time
+	if project_started == true and project.get_project_state() == 1 :
+		timer.start(project.get_time_total())	# temps en secondes
+
+
+func setProject(proj : Project) -> void:
+	project = proj
+	instanciateProject()
+	
+
+func instanciateProject() -> void:
+	lbl_name.text = project.get_project_name()
+	setStatus(project.get_project_state())
+	progress_bar.max_value = project.get_time_total()
 
 
 func setStatus(statusValue : int) -> void:
@@ -33,26 +44,13 @@ func setStatus(statusValue : int) -> void:
 		lbl_status.text = "fini"
 
 
-func setProject(proj : Project) -> void:
-	project = proj
-	print(project)
-	
-	
-func setTime(time : int) -> void:
-	timeTotal = time
-	progress_bar.max_value = timeTotal
-	
-	
-func setTimeLeft(time : int) -> void:
-	timeLeft = time
-
-
 func setVisibility(vis : bool) -> void:
 	visible = vis
 
 
 func startProject() -> void:
-	pass
+	project_started = true
+	project.start()
 
 
 func _on_button_pressed() -> void:
