@@ -11,9 +11,12 @@ var science_per_seconds := 0.0:
 		science_per_seconds = value
 		UiController.emit_science_second_changed(science_per_seconds)
 
-var pollution := 1000.0:
+var pollution := 0.0:
 	set(value):
-		pollution = value
+		if value <= 0 :
+			pollution = 0
+		else:
+			pollution = value
 		UiController.emit_pollution_changed(pollution)
 var pollution_per_seconds := 0.0
 

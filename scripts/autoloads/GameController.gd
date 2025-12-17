@@ -38,6 +38,7 @@ func set_grid(grid : TileMapLayer):
 func _on_build_batiment(bname:Enums.BUILDING_TYPE):
 	var building := building_manager.create_building(bname)
 	UiController.emit_start_building(building)
+	gauges.change_pollution_per_second(building.get_pollution())
 
 func _on_build_path():
 	UiController.emit_start_building_path()

@@ -7,7 +7,7 @@ class_name Building
 @export var building_description: String
 @export var building_genre: Enums.BUILDING_GENRE
 @export var building_type: Enums.BUILDING_TYPE
-@export var pollution_per_second: float
+@export var pollution_per_second := 0
 @export var price : int
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
