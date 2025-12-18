@@ -28,28 +28,31 @@ func _on_start_project(project : Project) -> void:
 	arrayProjects.append(proj)
 
 
+##
+##update notification indicator
 func _process(delta: float) -> void:
-	var finished_count := 0
-
-	for proj in arrayProjects:
-		var proje :Project = proj.project
-		print(proje.get_project_state())
-		if proje.get_project_state() >= 3:
-			finished_count += 1
-	if(finished_count>0):
-		notif.set_text(str(finished_count))
+	var i := 0
+	for proj in arrayProjects :
+		var project : Project = proj.getProject()
+		if project.get_project_state() == 3 :
+			i += 1
+	if(i>0):
+		notif.set_text(str(i))
+		notif.setVisible(true)
 	else:
+		notif.set_text(str(0))
 		notif.setVisible(false)
+
+
 ## closes projects that have ended
 func _on_btn_close_projects_pressed() -> void:
-	var i := 0
-	var arrayIndex : Array[int]
+	var arrayTemp : Array
 	for proj in arrayProjects :
 		var project : Project = proj.getProject()
 		if project.get_project_state() == 3 :
 			proj.setVisibility(false)
 			project_container.remove_child(proj)
-			arrayIndex.append(proj)
-		i += 1
-	for proj in arrayIndex :
+			arrayTemp.append(proj)
+	for proj in arrayTemp :
 		arrayProjects.erase(proj)
+	print(arrayProjects)
