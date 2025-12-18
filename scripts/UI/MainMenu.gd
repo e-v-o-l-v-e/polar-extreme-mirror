@@ -1,9 +1,9 @@
 extends Control
 class_name MainMenu
 
-@onready var quit_game_btn: Button = $VBoxContainer/QuitGameBtn
-@onready var settings_btn: Button = $VBoxContainer/SettingsBtn
-@onready var start_game_btn: Button = $VBoxContainer/StartGameBtn
+@onready var quit_game_btn: Button =$HBoxContainer/VBoxContainer2/VBoxContainer/QuitGameBtn
+@onready var settings_btn: Button =$HBoxContainer/VBoxContainer2/VBoxContainer/SettingsBtn
+@onready var start_game_btn: Button =$HBoxContainer/VBoxContainer2/VBoxContainer/StartGameBtn
 @onready var tutorial = preload("res://scenes/UI/Tutorial.tscn")
 
 var hover_scale := Vector2(1.02,1.02)
