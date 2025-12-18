@@ -8,7 +8,7 @@
 atlas = ExtResource("3_gypk2")
 region = Rect2(320, 384, 64, 64)
 
-[node name="MenuProject" type="MarginContainer"]
+[node name="MenuProjects" type="MarginContainer"]
 custom_minimum_size = Vector2(350, 530)
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,6 +72,7 @@ layout_mode = 2
 theme_override_constants/separation = -3
 
 [node name="Projet" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -80,30 +81,35 @@ icon_pressed = null
 icon_hover = null
 
 [node name="Projet2" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 icon_normal = null
 icon_pressed = null
 icon_hover = null
 
 [node name="Projet3" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 icon_normal = null
 icon_pressed = null
 icon_hover = null
 
 [node name="Projet4" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 icon_normal = null
 icon_pressed = null
 icon_hover = null
 
 [node name="Projet5" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 icon_normal = null
 icon_pressed = null
 icon_hover = null
 
 [node name="Projet6" parent="ninePatchRect/VBoxContainer/MarginContainer/ScrollContainer/projectContainer" instance=ExtResource("2_n1p1n")]
+visible = false
 layout_mode = 2
 icon_normal = null
 icon_pressed = null
