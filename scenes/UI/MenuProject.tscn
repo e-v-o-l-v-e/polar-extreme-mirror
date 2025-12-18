@@ -115,13 +115,13 @@ icon_normal = null
 icon_pressed = null
 icon_hover = null
 
-[node name="NinePatchRect" type="NinePatchRect" parent="ninePatchRect/VBoxContainer"]
+[node name="nineIcon" type="NinePatchRect" parent="ninePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_eoxx6")
 
-[node name="Button" type="Button" parent="ninePatchRect/VBoxContainer/NinePatchRect"]
+[node name="btnCloseProjects" type="Button" parent="ninePatchRect/VBoxContainer/nineIcon"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 1
 anchors_preset = 15
@@ -146,3 +146,4 @@ custom_minimum_size = Vector2(0, 7)
 layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ninePatchRect/VBoxContainer/nineIcon/btnCloseProjects" to="." method="_on_btn_close_projects_pressed"]
