@@ -20,11 +20,11 @@ boot_splash/minimum_display_time=1000
 
 [autoload]
 
-Enums="*res://scripts/autoloads/Enums.gd"
 GameController="*res://scripts/autoloads/GameController.gd"
+Enums="*res://scripts/autoloads/Enums.gd"
+SettingsValue="*res://scripts/autoloads/settingsValue.gd"
 UiController="*res://scripts/autoloads/UIController.gd"
 settingsValue="*res://scripts/autoloads/settingsValue.gd"
-SettingsValue="*res://scripts/autoloads/settingsValue.gd"
 
 [display]
 
