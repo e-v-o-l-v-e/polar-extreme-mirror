@@ -3,7 +3,7 @@ extends Control
 @onready var image: TextureRect = $HBoxContainer/VBoxContainer/Image
 @onready var explanation: Label = $HBoxContainer/VBoxContainer/Explanation
 
-@export_enum("NORMAL", "SHORT") var mode = "SHORT"
+@export_enum("NORMAL", "SHORT") var mode = "NORMAL"
 
 var game_scene = preload("res://scenes/game/Game.tscn")
 
@@ -16,7 +16,7 @@ var images := [
 	"res://assets/tutorial/menu_projets.png",
 	"res://assets/tutorial/menu_projets.png",
 	"res://assets/tutorial/menu_scientifique.png",
-	"res://assets/tutorial/menu_scientifique.png",
+	"res://assets/tutorial/jauges.png",
 	"res://assets/tutorial/menu_scientifique.png",
 	"res://assets/tutorial/science.png",
 	"res://assets/tutorial/science.png",
@@ -72,14 +72,14 @@ func show_image(i: int):
 func _on_next_btn_pressed() -> void:
 	if mode == "SHORT":
 		index = min(images_short.size(),index + 1)
-		if(index == images_short.size()):
+		if(index > images_short.size()):
 			get_tree().change_scene_to_packed(game_scene)
 		else:
 			show_image(index)
 	else :
 		index = min(images.size(),index + 1)
 		if(index == images.size()):
-			visible = false
+			get_tree().change_scene_to_packed(game_scene)
 		else:
 			show_image(index)
 
