@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cws5sxnaq0d7j"]
 
-[ext_resource type="Script" uid="uid://b7itk0w4h2nvs" path="res://scripts/UI/GaugesUi.gd" id="1_c22h1"]
-[ext_resource type="Texture2D" uid="uid://sycu47s5jcv8" path="res://assets/UI/tilesetT3.png" id="2_gcob8"]
+[ext_resource type="Script" uid="uid://cdvmem18l372e" path="res://scripts/UI/GaugesUi.gd" id="1_c22h1"]
+[ext_resource type="Texture2D" uid="uid://h8vpungsiv7a" path="res://assets/UI/tilesetT3.png" id="2_gcob8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuiy1"]
 bg_color = Color(0.862745, 0.94902, 0.956863, 1)
@@ -92,7 +92,7 @@ offset_top = 61.0
 offset_right = 72.0
 offset_bottom = 84.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mal-être"
+text = "Bien-être"
 
 [node name="WellnessBar" type="NinePatchRect" parent="."]
 layout_mode = 2
@@ -129,6 +129,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6776a")
 max_value = 200.0
 value = 100.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="WellnessBar/MarginContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="PollutionBar/MarginContainer/ProgressBar" to="." method="_on_pollution_bar_mouse_entered"]
 [connection signal="mouse_exited" from="PollutionBar/MarginContainer/ProgressBar" to="." method="_on_pollution_bar_mouse_exited"]
