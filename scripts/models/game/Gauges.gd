@@ -18,6 +18,7 @@ var pollution := 100.0:
 		else:
 			pollution = value
 		if pollution >= max_pollution:
+			UiController.emit_trigger_end_game()
 			print("looooose pollution")
 		UiController.emit_pollution_changed(pollution)
 

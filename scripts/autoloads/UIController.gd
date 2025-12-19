@@ -40,6 +40,8 @@ signal project_change_state(proj : Project)
 signal stop_building_path()
 signal stop_building_bat()
 
+signal trigger_end_game()
+
 func emit_build_batiment(bname : Enums.BUILDING_TYPE):
 	build_batiment.emit(bname)
 
@@ -111,3 +113,6 @@ func emit_open_project_menu(proj : Project) -> void:
 
 func emit_start_project(proj : Project) -> void:
 	start_project.emit(proj)
+	
+func emit_trigger_end_game()->void:
+	trigger_end_game.emit()
